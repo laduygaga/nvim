@@ -31,7 +31,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.colorcolumn = '80'
-vim.opt.viminfo="'25,\"50,n~/.config/nvim/.viminfo"
+vim.opt.viminfo="'25,\"50,n/tmp/.viminfo"
 vim.opt.autoread = true
 
 -- mouse
