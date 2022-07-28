@@ -49,4 +49,3 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.nrformats:remove{"octal"}
 vim.opt.cursorline = true
-
