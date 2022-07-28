@@ -37,6 +37,7 @@ return require('packer').startup(function(use)
   use 'jmerle/competitive-companion'
   use 'p00f/cphelper.nvim'
   use 'nvim-telescope/telescope.nvim'
+  use 'folke/lsp-colors.nvim'
 
 
 
