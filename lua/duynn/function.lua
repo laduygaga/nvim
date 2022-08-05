@@ -1,3 +1,9 @@
+function ToggleVExplorer()
+	  vim.api.nvim_command('Lexplore')
+	  vim.api.nvim_command('vertical resize 30')
+end
+
+
 -- toggle mouse
 local is_mouse_enabled = 0
 function ToggleMouse()

@@ -25,15 +25,29 @@ nnoremap("<S-Tab>", "gT", { silent = true })
 
 vnoremap("<leader>,,", "<cmd>Trans :vi -b<CR>", { silent = true })
 
+vnoremap("g\"", "<esc>`>a\"<esc>`<i\"<esc>\"")
+vnoremap("g\'", "<esc>`>a'<esc>`<i\'<esc>\'")
+vnoremap("g)", "<esc>`>a)<esc>`<i(<esc>")
+vnoremap("g}", "<esc>`>a}<esc>`<i{<esc>")
+vnoremap("g]", "<esc>`>a]<esc>`<i[<esc>")
+
+vnoremap("<C-j>", ":m '>+1<CR>gv=gv")
+vnoremap("<C-k>", ":m '<-2<CR>gv=gv")
+
+-- vnoremap("-", ":s/./&̶/g<CR>")
+vnoremap("-", ":Strikethrough<CR>")
+vnoremap("_", ":Underline<CR>")
+vnoremap("=", ":DoubleUnderline<CR>")
+
+
 nnoremap("<leader>g", "<cmd>Ag <C-r>=expand('<cword>')<CR><CR>", { silent = true })
 nnoremap("<leader>s", "<cmd>AgFromSearch<CR>", { silent = true })
-nnoremap("<leader>e", "<cmd>call ToggleVExplorer()<CR>", { silent = true })
+nnoremap("<leader>e", "<cmd>lua ToggleVExplorer()<CR>", { silent = true })
 nnoremap("<leader>m", "<cmd>lua ToggleMouse()<CR>", { silent = true })
 nnoremap("<leader>w", "<cmd>lua ToggleWrap()<CR>", { silent = true })
 nnoremap("<leader>T", "<cmd>TagbarToggle<CR>", { silent = true })
 nnoremap("<leader>v", "<cmd>MarkdownPreviewToggle<CR>", { silent = true })
-nnoremap("<leader>y", "<cmd>let @\" = expand(\"%:p\")<CR>", { silent = true })
-nnoremap("<F2>", "<cmd>call ToggleExpandTab()<CR>", { silent = true })
+-- nnoremap("<F2>", "<cmd>call ToggleExpandTab()<CR>", { silent = true })
 nnoremap("<F4>", "<cmd>lua ToggleColorscheme()<CR>", { silent = true })
 
 nnoremap("]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })

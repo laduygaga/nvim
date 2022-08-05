@@ -14,6 +14,15 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Simple plugins can be specified as strings
+  use  'hrsh7th/cmp-nvim-lsp'
+  use  'hrsh7th/cmp-buffer'
+  use  'hrsh7th/cmp-path'
+  use  'hrsh7th/cmp-cmdline'
+  use  'hrsh7th/nvim-cmp'
+  use  'saadparwaiz1/cmp_luasnip'
+  use  'L3MON4D3/LuaSnip'
+
+
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'voldikss/vim-floaterm'
@@ -30,7 +39,7 @@ return require('packer').startup(function(use)
   use 'pamacs/vim-srt-sync'
   use 'rking/ag.vim'
   use 'mfussenegger/nvim-dap'
-  use 'mfussenegger/nvim-dap-python' 
+  use 'mfussenegger/nvim-dap-python'
   use 'leoluz/nvim-dap-go'
   use 'theHamsta/nvim-dap-virtual-text'
   use 'rcarriga/nvim-dap-ui'
@@ -48,7 +57,8 @@ return require('packer').startup(function(use)
 
 
   -- Plugins can have post-install/update hooks
-  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+
 
   -- Post-install/update hook with neovim command
   use {
@@ -61,9 +71,9 @@ return require('packer').startup(function(use)
 
 
   -- Use specific branch, dependency and run lua file after load
-  use { 'ms-jpq/coq_nvim', branch = 'coq' }
-  use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
-  use { 'ms-jpq/coq.thirdparty', branch = '3p' }
+  -- use { 'ms-jpq/coq_nvim', branch = 'coq' }
+  -- use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
+  -- use { 'ms-jpq/coq.thirdparty', branch = '3p' }
 
   if packer_bootstrap then
     require('packer').sync()
