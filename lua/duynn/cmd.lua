@@ -2,6 +2,9 @@
 vim.cmd[[filetype plugin indent on]]
 vim.cmd[[syntax on]]
 
+-- colorscheme
+vim.cmd[[colorscheme peachpuff]]
+
 -- visual
 vim.cmd[[highlight CursorLine cterm=NONE ctermbg=227]]
 vim.cmd[[highlight Visual ctermfg=NONE ctermbg=11]]
