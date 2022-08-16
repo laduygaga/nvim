@@ -51,7 +51,7 @@ nnoremap("<leader>v", "<cmd>MarkdownPreviewToggle<CR>", { silent = true })
 nnoremap("<F4>", "<cmd>lua ToggleColorscheme()<CR>", { silent = true })
 
 nnoremap("]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
-nnoremap("]e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+nnoremap("[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
 nnoremap("<C-j>", "<cmd>FloatermToggle<CR>", { silent = true })
 tnoremap("<C-j>", "<C-\\><C-n>:FloatermToggle<CR>", { silent = true })
 nnoremap("<leader><leader>r", "<cmd>Lspsaga rename<CR>", { silent = true })

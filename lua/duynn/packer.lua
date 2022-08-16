@@ -31,7 +31,7 @@ return require('packer').startup(function(use)
   use 'joshdick/onedark.vim'
   use 'airblade/vim-gitgutter'
   use 'majutsushi/tagbar'
-  use 'mattn/emmet-vim'
+  use 'mattn/emmet-vim' -- <C-y>,
   use 'tpope/vim-surround'
   use 'echuraev/translate-shell.vim'
   use 'junegunn/fzf.vim'
