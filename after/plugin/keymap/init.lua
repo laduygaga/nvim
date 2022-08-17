@@ -54,6 +54,7 @@ nnoremap("]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
 nnoremap("[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
 nnoremap("<C-j>", "<cmd>FloatermToggle<CR>", { silent = true })
 tnoremap("<C-j>", "<C-\\><C-n>:FloatermToggle<CR>", { silent = true })
+tnoremap("<C-]>", "<C-\\><C-n>", { silent = true })
 nnoremap("<leader><leader>r", "<cmd>Lspsaga rename<CR>", { silent = true })
 nnoremap("gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
