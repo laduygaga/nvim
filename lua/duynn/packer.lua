@@ -45,7 +45,7 @@ return require('packer').startup(function(use)
   use 'rcarriga/nvim-dap-ui'
   use 'jbyuki/one-small-step-for-vimkind'
   use 'neovim/nvim-lspconfig'
-  use 'github/copilot.vim'
+  -- use 'github/copilot.vim'
   use 'tami5/lspsaga.nvim'
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
