@@ -43,10 +43,23 @@ end
 --  filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
 --}
 
+local lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
+}
+
 nvim_lsp.pyright.setup{
   on_attach = on_attach,
 }
 
+nvim_lsp.rust_analyzer.setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    -- Server-specific settings...
+    settings = {
+      ["rust-analyzer"] = {}
+    }
+}
 
 nvim_lsp.gopls.setup{
   on_attach = on_attach,
