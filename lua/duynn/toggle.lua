@@ -29,6 +29,7 @@ function ToggleColorscheme()
 	else
 		print("colorscheme peachpuff")
 		vim.api.nvim_command('colorscheme peachpuff')
+		vim.api.nvim_command('highlight CursorLine cterm=NONE ctermbg=227')
 		is_enable_colorscheme = 0
 	end
 end
