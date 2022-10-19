@@ -22,6 +22,7 @@ nnoremap("<leader>r", "<cmd>GRg<CR>", { silent = true })
 nnoremap("<leader><leader>s", "<cmd>FRg<CR>", { silent = true })
 nnoremap("<C-Tab>", "gt", { silent = true })
 nnoremap("<S-Tab>", "gT", { silent = true })
+nnoremap("gr", ":%s///g<left><left>", { silent = true })
 
 vnoremap("<leader>,,", "<cmd>Trans :vi -b<CR>", { silent = true })
 
@@ -57,5 +58,3 @@ tnoremap("<C-j>", "<C-\\><C-n>:FloatermToggle<CR>", { silent = true })
 tnoremap("<C-]>", "<C-\\><C-n>", { silent = true })
 nnoremap("<leader><leader>r", "<cmd>Lspsaga rename<CR>", { silent = true })
 nnoremap("gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
-
--- dap debuger
