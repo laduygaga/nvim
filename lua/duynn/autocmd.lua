@@ -40,6 +40,7 @@ local autocmds = {
 		{ "BufEnter", "*.py", [[nnoremap <silent> <leader>dl :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]] };
 		{ "BufEnter", "*.py", [[vnoremap <silent> <CR> :lua require("dapui").eval()<CR>]] };
 		{ "BufEnter", "*.py", [[nnoremap <silent> <leader>dc :lua require'dap'.continue()<CR>]] };
+		{ "BufEnter", "*.py", [[ nnoremap <silent> <leader>ds :lua require'dap'.close()<CR>]] };
 		{ "BufEnter", "*.py", [[nnoremap <silent> <F8> :lua require'dap'.step_over()<CR>]] };
 		{ "BufEnter", "*.py", [[nnoremap <silent> <F9> :lua require'dap'.step_into()<CR>]] };
 		{ "BufEnter", "*.py", [[nnoremap <silent> <F10> :lua require'dap'.step_out()<CR>]] };
@@ -54,6 +55,7 @@ local autocmds = {
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>dl :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]] };
 		{ "BufEnter", "*.go", [[ vnoremap <silent> <CR> :lua require("dapui").eval()<CR>]] };
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>dc :lua require'dap'.continue()<CR>]] };
+		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>ds :lua require'dap'.close()<CR>]] };
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <F8> :lua require'dap'.step_over()<CR>]] };
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <F9> :lua require'dap'.step_into()<CR>]] };
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <F10> :lua require'dap'.step_out()<CR>]] };
@@ -61,12 +63,13 @@ local autocmds = {
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>du :lua require("dapui").toggle()<CR>]] };
 	};
 	lua_debugger = {
-		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR> ]]};
+		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint Condition: '))<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>dl :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR> ]]};
 		{ "BufEnter", "*.lua", [[ vnoremap <silent> <CR> :lua require("dapui").eval()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <F5> :lua require"osv".run_this()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>dc :lua require'dap'.continue()<CR> ]]};
+		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>ds :lua require'dap'.close()<CR>]] };
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <F8> :lua require'dap'.step_over()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <F9> :lua require'dap'.step_into()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <F10> :lua require'dap'.step_out()<CR> ]]};

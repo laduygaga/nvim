@@ -10,6 +10,11 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function(use)
+  -- nvim inside chrome
+  -- use {
+  --     'glacambre/firenvim',
+  --     run = function() vim.fn['firenvim#install'](0) end 
+  -- }
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
