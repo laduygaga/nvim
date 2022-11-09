@@ -42,7 +42,7 @@ vim.cmd[[let $FZF_DEFAULT_COMMAND = "fd --type f"]]
 
 -- netrw
 vim.cmd[[let g:netrw_banner=0]]
-vim.cmd[[let g:netrw_liststyle=3]]
+vim.cmd[[let g:netrw_liststyle=1]]
 vim.cmd[[let g:netrw_list_hide = '^\..*']]
 vim.cmd[[let g:netrw_hide = 1]]
 

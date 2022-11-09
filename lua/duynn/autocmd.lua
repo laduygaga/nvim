@@ -35,6 +35,8 @@ local autocmds = {
 		{ "BufReadPost", "*", [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]] }; -- restore place in file from previous session
 	};
 	python_debugger = {
+		{ "BufEnter", "*.py", [[ vnoremap <silent> g// :norm 0i# <esc>]] };
+		{ "BufEnter", "*.py", [[ vnoremap <silent> g/ :norm 0xx<esc>]] };
 		{ "BufEnter", "*.py", [[nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>]] };
 		{ "BufEnter", "*.py", [[nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint Condition: '))<CR>]] };
 		{ "BufEnter", "*.py", [[nnoremap <silent> <leader>dl :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]] };
@@ -50,6 +52,8 @@ local autocmds = {
 		{ "BufEnter", "*.py", [[nnoremap <silent> <leader>do :lua require('dap-python').test_class()<CR>]] };
 	};
 	go_debugger = {
+		{ "BufEnter", "*.go", [[ vnoremap <silent> g// :norm 0i// <esc>]] };
+		{ "BufEnter", "*.go", [[ vnoremap <silent> g/ :norm 0xxx<esc>]] };
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>]] };
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint Condition: '))<CR>]] };
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>dl :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]] };
@@ -63,6 +67,8 @@ local autocmds = {
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>du :lua require("dapui").toggle()<CR>]] };
 	};
 	lua_debugger = {
+		{ "BufEnter", "*.lua", [[ vnoremap <silent> g// :norm 0i-- <esc>]] };
+		{ "BufEnter", "*.lua", [[ vnoremap <silent> g/ :norm 0xxx<esc>]] };
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint Condition: '))<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>dl :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR> ]]};
