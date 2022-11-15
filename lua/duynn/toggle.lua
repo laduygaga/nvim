@@ -28,8 +28,14 @@ function ToggleColorscheme()
 		is_enable_colorscheme = 1
 	else
 		print("colorscheme peachpuff")
-		vim.api.nvim_command('colorscheme peachpuff')
-		vim.api.nvim_command('highlight CursorLine cterm=NONE ctermbg=227')
+		vim.cmd[[colorscheme peachpuff]]
+		vim.cmd[[highlight Normal ctermfg=None ctermbg=None]]
+		vim.cmd[[highlight CursorLine cterm=NONE ctermbg=227]]
+		vim.cmd[[highlight Visual ctermfg=NONE ctermbg=11]]
+		vim.cmd[[highlight MatchParen ctermfg=Black ctermbg=LightCyan]]
+		vim.cmd[[highlight CursorLineNr term=none cterm=none ctermfg=202]]
+		vim.cmd[[highlight Search term=none cterm=none ctermfg=Black ctermbg=LightCyan]]
+
 		is_enable_colorscheme = 0
 	end
 end

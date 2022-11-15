@@ -6,11 +6,12 @@ vim.cmd[[syntax on]]
 vim.cmd[[colorscheme peachpuff]]
 
 -- visual
-vim.cmd[[highlight CursorLine cterm=NONE ctermbg=227]]
-vim.cmd[[highlight Visual ctermfg=NONE ctermbg=11]]
-vim.cmd[[highlight MatchParen ctermfg=Black ctermbg=LightCyan]]
-vim.cmd[[highlight CursorLineNr term=none cterm=none ctermfg=202]]
-vim.cmd[[highlight Search term=none cterm=none ctermfg=Black ctermbg=LightCyan]]
+vim.cmd[[hi Normal ctermfg=None ctermbg=None guibg=None]]
+vim.cmd[[hi CursorLine cterm=NONE ctermbg=227]]
+vim.cmd[[hi Visual ctermfg=NONE ctermbg=11]]
+vim.cmd[[hi MatchParen ctermfg=Black ctermbg=LightCyan]]
+vim.cmd[[hi CursorLineNr term=none cterm=none ctermfg=202]]
+vim.cmd[[hi Search term=none cterm=none ctermfg=Black ctermbg=LightCyan]]
 
 -- floaterm
 vim.cmd[[highlight FloatermBorder guibg=orange guifg=cyan]]
