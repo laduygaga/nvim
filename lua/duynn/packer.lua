@@ -62,7 +62,7 @@ return require('packer').startup(function(use)
 
 
   -- Plugins can have post-install/update hooks
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+  use({ "iamcco/markdown-preview.nvim", run = ":call mkdp#util#install()", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
 
   -- Post-install/update hook with neovim command
@@ -70,6 +70,7 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
+  use('nvim-treesitter/playground')
 
   -- Post-install/update hook with call of vimscript function with argument
   use { "junegunn/fzf", run = ":call fzf#install()" }
