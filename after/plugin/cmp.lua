@@ -42,7 +42,10 @@ cmp.setup({
 
 		{ name = "path" },
 
-		{ name = "cmdline" },
-
+		-- { name = "cmdline",
+        --   option = {
+        --   ignore_cmds = { 'Man', '!', "*" }
+        --   }
+		-- },
 	},
 })

@@ -82,6 +82,10 @@ local autocmds = {
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>dr :lua require'dap'.repl.toggle()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>du :lua require("dapui").toggle()<CR> ]]};
 	};
+	floatterm = {
+		-- floattermupdate when resize window
+		{ "VimResized", "*", [[FloatermUpdate]] };
+	};
 	misc = {
 		{ "BufNewFile,BufRead", "*.conf", [[setf dosini]]};
 	};
