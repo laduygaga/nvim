@@ -1,7 +1,10 @@
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
-    disable = {},
+	-- disable for large files or html
+	disable = function()
+		return vim.fn.line("$") > 5000  -- or vim.bo.filetype == "html"
+	end,
   },
   indent = {
     enable = false,
