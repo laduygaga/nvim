@@ -1,3 +1,6 @@
+vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
+
+
 local dap = require"dap"
 dap.configurations.lua = {
   {
@@ -23,3 +26,44 @@ dap.adapters.nlua = function(callback, config)
   callback({ type = 'server', host = config.host, port = config.port })
 end
 
+
+-- go debugger configurations
+dap.configurations.go = {
+  {
+	type = 'go',
+	name = "Debug",
+	request = "launch",
+	program = function()
+	  local git_files = vim.fn.systemlist('git ls-files | grep main.go$')
+	  local enum_git_files = vim.fn.systemlist('git ls-files | grep main.go$ | grep -n main.go$')
+	  local selected_file = vim.fn.inputlist(enum_git_files)
+	  -- strip number and space
+	  selected_file = string.gsub(selected_file, '%d+ ', '')
+	  -- selected_file to int
+	  selected_file = tonumber(selected_file)
+	  return git_files[selected_file]
+	end
+
+  },
+  -- debug (args) main.go
+  {
+	type = 'go',
+	name = "Debug (args)",
+	request = "launch",
+	program = function()
+	  local git_files = vim.fn.systemlist('git ls-files | grep main.go$')
+	  local enum_git_files = vim.fn.systemlist('git ls-files | grep main.go$ | grep -n main.go$')
+	  local selected_file = vim.fn.inputlist(enum_git_files)
+	  -- strip number and space
+	  selected_file = string.gsub(selected_file, '%d+ ', '')
+	  -- selected_file to int
+	  selected_file = tonumber(selected_file)
+	  return git_files[selected_file]
+	end,
+	-- input args
+	args = function()
+	  local args = vim.fn.input('Args: ')
+	  return vim.split(args, ' ')
+	end
+  },
+}
