@@ -84,7 +84,7 @@ local autocmds = {
 	};
 	floatterm = {
 		-- floattermupdate when resize window
-		{ "VimResized", "*", [[FloatermUpdate]] };
+		{ "VimResized", "*", [[ FloatermUpdate ]] };
 	};
 	misc = {
 		{ "BufNewFile,BufRead", "*.conf", [[setf dosini]]};

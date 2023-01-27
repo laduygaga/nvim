@@ -11,23 +11,23 @@ require("dapui").setup({
   },
   expand_lines = vim.fn.has("nvim-0.7") == 1,
   layouts = {
+    -- {
+    --   elements = {
+    --   -- Elements can be strings or table with id and size keys.
+	-- 	{id = "watches", size = 0.25},
+	-- 	{id = "breakpoints", size = 0.25},
+	-- 	{id = "stacks", size = 0.25},
+    --     { id = "scopes", size = 0.25},
+    --   },
+    --   size = 80,
+    --   position = "right",
+    -- },
     {
       elements = {
-      -- Elements can be strings or table with id and size keys.
-		{id = "watches", size = 0.25},
+		{id = "repl", size = 0.75},
 		{id = "breakpoints", size = 0.25},
-		{id = "stacks", size = 0.25},
-        { id = "scopes", size = 0.25},
       },
-      size = 80,
-      position = "right",
-    },
-    {
-      elements = {
-        "repl",
-        -- "console",
-      },
-      size = 15,
+      size = 0.3,
       position = "bottom",
     },
   },

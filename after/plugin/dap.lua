@@ -66,4 +66,23 @@ dap.configurations.go = {
 	  return vim.split(args, ' ')
 	end
   },
+  -- debug current file
+  {
+	type = 'go',
+	name = "Debug current file",
+	request = "launch",
+	program = "${file}"
+  },
+  -- debug (args) current file
+  {
+	type = 'go',
+	name = "Debug current file with args",
+	request = "launch",
+	program = "${file}",
+	-- input args
+	args = function()
+	  local args = vim.fn.input('Args: ')
+	  return vim.split(args, ' ')
+	end
+  },
 }
