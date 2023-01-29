@@ -65,3 +65,7 @@ tnoremap("<C-j>", "<C-\\><C-n>:FloatermToggle<CR>", { silent = true })
 tnoremap("<C-]>", "<C-\\><C-n>", { silent = true })
 nnoremap("<leader><leader>r", "<cmd>Lspsaga rename<CR>", { silent = true })
 nnoremap("gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+
+-- source graph
+nnoremap("<leader><space>", '<cmd>lua require("sg.telescope").fuzzy_search_results()<CR>', { silent = true })
+
