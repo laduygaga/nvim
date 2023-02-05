@@ -49,3 +49,6 @@ vim.cmd[[let g:netrw_hide = 1]]
 
 -- coq
 -- vim.cmd[[let g:coq_settings = { 'auto_start': 'shut-up' }]]
+
+-- make tagbar in the left
+vim.cmd('let g:tagbar_left = 1')

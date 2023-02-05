@@ -33,6 +33,7 @@ local autocmds = {
 	};
 	bufreadpost = {
 		{ "BufReadPost", "*", [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]] }; -- restore place in file from previous session
+		{ "BufReadPost", "quickfix", [[ nnoremap <buffer> <CR> <CR>]] };
 	};
 	python_debugger = {
 		{ "BufEnter", "*.py", [[ vnoremap <silent> g// :norm 0i# <esc>]] };
