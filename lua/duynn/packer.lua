@@ -93,7 +93,7 @@ return require('packer').startup(function(use)
   -- use { 'ms-jpq/coq_nvim', branch = 'coq' }
   -- use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
   -- use { 'ms-jpq/coq.thirdparty', branch = '3p' }
-  use { "tjdevries/sg.nvim", requires = { "nvim-lua/plenary.nvim" }, run = "cargo build --workspace" }
+  -- use { "tjdevries/sg.nvim", requires = { "nvim-lua/plenary.nvim" }, run = "cargo build --workspace" }
 
   if packer_bootstrap then
     require('packer').sync()

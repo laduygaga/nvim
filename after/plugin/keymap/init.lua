@@ -67,5 +67,4 @@ nnoremap("<leader><leader>r", "<cmd>Lspsaga rename<CR>", { silent = true })
 nnoremap("gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
 -- source graph
-nnoremap("<leader><space>", '<cmd>lua require("sg.telescope").fuzzy_search_results()<CR>', { silent = true })
-
+-- nnoremap("<leader><space>", '<cmd>lua require("sg.telescope").fuzzy_search_results()<CR>', { silent = true })

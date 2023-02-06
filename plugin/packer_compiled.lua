@@ -242,11 +242,6 @@ _G.packer_plugins = {
     path = "/home/duy/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
-  ["sg.nvim"] = {
-    loaded = true,
-    path = "/home/duy/.local/share/nvim/site/pack/packer/start/sg.nvim",
-    url = "https://github.com/tjdevries/sg.nvim"
-  },
   tagbar = {
     loaded = true,
     path = "/home/duy/.local/share/nvim/site/pack/packer/start/tagbar",
