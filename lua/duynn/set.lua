@@ -9,8 +9,10 @@ vim.opt.titlestring = '%f - %w'
 -- vim.opt.t_ut = nil
 
 -- windows
-vim.opt.winheight = 25
-vim.opt.winwidth = 80
+-- vim.opt.winheight = 25
+-- vim.opt.winwidth = 80
+
+vim.opt.splitbelow = true
 
 -- folding
 vim.opt.foldmethod = 'indent'

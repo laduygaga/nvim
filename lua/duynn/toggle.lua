@@ -1,8 +1,7 @@
 function ToggleVExplorer()
 	  vim.api.nvim_command('Lexplore')
-	  vim.api.nvim_command('vertical resize 30')
+	  -- vim.api.nvim_command('vertical resize 30')
 end
-
 
 -- toggle mouse
 local is_mouse_enabled = 0
@@ -55,5 +54,24 @@ function ToggleWrap()
 		vim.api.nvim_command('set virtualedit=')
 		vim.api.nvim_command('setlocal display+=lastline')
 		is_wrap = 1
+	end
+end
+
+
+-- toggle expandtab then retab
+local is_expandtab = 0
+function ToggleExpandtab()
+	if is_expandtab == 1 then
+		print("Expandtab OFF")
+		vim.api.nvim_command('setlocal noexpandtab')
+		vim.api.nvim_command('setlocal tabstop=4')
+		vim.api.nvim_command('%retab!')
+		is_expandtab = 0
+	else
+		print("Expandtab ON")
+		vim.api.nvim_command('setlocal expandtab')
+		vim.api.nvim_command('setlocal tabstop=4')
+		vim.api.nvim_command('retab')
+		is_expandtab = 1
 	end
 end

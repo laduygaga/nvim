@@ -2,9 +2,9 @@ local Remap = require("duynn.keymap")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
-local xnoremap = Remap.xnoremap
+-- local xnoremap = Remap.xnoremap
 local tnoremap = Remap.tnoremap
-local nmap = Remap.nmap
+-- local nmap = Remap.nmap
 
 
 inoremap("jk", "<ESC>")
@@ -53,9 +53,10 @@ nnoremap("<leader>s", "<cmd>AgFromSearch<CR>", { silent = true })
 nnoremap("<leader>e", "<cmd>lua ToggleVExplorer()<CR>", { silent = true })
 nnoremap("<leader>m", "<cmd>lua ToggleMouse()<CR>", { silent = true })
 nnoremap("<leader>w", "<cmd>lua ToggleWrap()<CR>", { silent = true })
-nnoremap("<leader>T", "<cmd>TagbarToggle<CR>", { silent = true })
+-- nnoremap("<C-e>", "<cmd>TagbarToggle<CR>", { silent = true })
+nnoremap("<C-e>", "<cmd>AerialToggle!<CR>", { silent = true })
 nnoremap("<leader>v", "<cmd>MarkdownPreviewToggle<CR>", { silent = true })
--- nnoremap("<F2>", "<cmd>call ToggleExpandTab()<CR>", { silent = true })
+nnoremap("<F2>", "<cmd>lua ToggleExpandtab()<CR>", { silent = true })
 nnoremap("<F4>", "<cmd>lua ToggleColorscheme()<CR>", { silent = true })
 
 nnoremap("]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
