@@ -73,3 +73,7 @@ nnoremap("<leader><space>", '<cmd>lua require("sg.telescope").fuzzy_search_resul
 -- scroll horizontally
 nnoremap("<C-l>", "20zl", { silent = true })
 nnoremap("<C-h>", "20zh", { silent = true })
+
+-- cycle through breakpoints
+nnoremap("]b", "<cmd> lua require('goto-breakpoints').next()<CR>", {silent=true})
+nnoremap("[b", "<cmd> lua require('goto-breakpoints').prev()<CR>", {silent=true})
