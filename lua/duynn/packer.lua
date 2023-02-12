@@ -94,6 +94,10 @@ return require('packer').startup(function(use)
   -- use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
   -- use { 'ms-jpq/coq.thirdparty', branch = '3p' }
   use { "tjdevries/sg.nvim", requires = { "nvim-lua/plenary.nvim" }, run = "cargo build --workspace" }
+  use {
+    'stevearc/aerial.nvim',
+    config = function() require('aerial').setup() end
+  }
 
   if packer_bootstrap then
     require('packer').sync()
