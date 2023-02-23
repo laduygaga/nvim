@@ -97,6 +97,7 @@ return require('packer').startup(function(use)
     'stevearc/aerial.nvim',
     config = function() require('aerial').setup() end
   }
+  use 'ofirgall/goto-breakpoints.nvim'
 
   if packer_bootstrap then
     require('packer').sync()
