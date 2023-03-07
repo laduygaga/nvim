@@ -41,7 +41,7 @@ end
 
 
 -- toggle wrap line
-local is_wrap = 0
+local is_wrap = 1
 function ToggleWrap()
 	if is_wrap == 1 then
 		print("Wrap OFF")
