@@ -1,11 +1,47 @@
 require("chatgpt").setup({
-  welcome_message = "hello duy", -- set to "" if you don't like the fancy godot robot
-  loading_text = "loading",
-  question_sign = "", -- you can use emoji if you want e.g. 🙂
-  answer_sign = "ﮧ", -- 🤖
-  max_line_length = 1200,
   yank_register = "+",
-  chat_layout = {
+  edit_with_instructions = {
+    diff = false,
+    keymaps = {
+      accept = "<C-y>",
+      toggle_diff = "<C-d>",
+      toggle_settings = "<C-o>",
+      cycle_windows = "<Tab>",
+      use_output_as_input = "<C-i>",
+    },
+  },
+  chat = {
+    welcome_message = "Hello, Duy",
+    loading_text = "Loading, please wait ...",
+    question_sign = "", -- 🙂
+    answer_sign = "ﮧ", -- 🤖
+    max_line_length = 120,
+    sessions_window = {
+      border = {
+        style = "rounded",
+        text = {
+          top = " Sessions ",
+        },
+      },
+      win_options = {
+        winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+      },
+    },
+    keymaps = {
+      close = { "<C-c>" },
+      yank_last = "<C-y>",
+      yank_last_code = "<C-k>",
+      scroll_up = "<C-u>",
+      scroll_down = "<C-d>",
+      toggle_settings = "<C-o>",
+      new_session = "<C-n>",
+      cycle_windows = "<Tab>",
+      select_session = "<Space>",
+      rename_session = "r",
+      delete_session = "d",
+    },
+  },
+  popup_layout = {
     relative = "editor",
     position = "50%",
     size = {
@@ -13,15 +49,7 @@ require("chatgpt").setup({
       width = "80%",
     },
   },
-  settings_window = {
-    border = {
-      style = "rounded",
-      text = {
-        top = " Settings ",
-      },
-    },
-  },
-  chat_window = {
+  popup_window = {
     filetype = "chatgpt",
     border = {
       highlight = "FloatBorder",
@@ -30,8 +58,11 @@ require("chatgpt").setup({
         top = " ChatGPT ",
       },
     },
+    win_options = {
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+    },
   },
-  chat_input = {
+  popup_input = {
     prompt = "  ",
     border = {
       highlight = "FloatBorder",
@@ -41,9 +72,24 @@ require("chatgpt").setup({
         top = " Prompt ",
       },
     },
+    win_options = {
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+    },
+    submit = "<CR>",
+  },
+  settings_window = {
+    border = {
+      style = "rounded",
+      text = {
+        top = " Settings ",
+      },
+    },
+    win_options = {
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+    },
   },
   openai_params = {
-    model = "text-davinci-003",
+    model = "gpt-3.5-turbo",
     frequency_penalty = 0,
     presence_penalty = 0,
     max_tokens = 300,
@@ -57,13 +103,6 @@ require("chatgpt").setup({
     top_p = 1,
     n = 1,
   },
-  keymaps = {
-    close = { "<C-k>", "<Esc>" },
-    yank_last = "<C-y>",
-    scroll_up = "<C-u>",
-    scroll_down = "<C-d>",
-    toggle_settings = "<C-o>",
-    new_session = "<C-n>",
-    cycle_windows = "<Tab>",
-  },
+  actions_paths = {},
+  predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
 })

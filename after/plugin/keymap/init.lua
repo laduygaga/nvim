@@ -79,4 +79,4 @@ nnoremap("]b", "<cmd> lua require('goto-breakpoints').next()<CR>", {silent=true}
 nnoremap("[b", "<cmd> lua require('goto-breakpoints').prev()<CR>", {silent=true})
 
 -- toggle chatgpt
-nnoremap("<C-k>", "<cmd>ChatGPT<CR>", { silent = true })
+nnoremap("<leader>c", "<cmd>ChatGPT<CR>", { silent = true })
