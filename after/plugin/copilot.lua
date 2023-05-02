@@ -17,6 +17,7 @@ vim.g.copilot_filetypes = {
   ["sh"] = true,
   ["vim"] = true,
   ["php"] = true,
+  ["yaml"] = true,
 }
 
 
