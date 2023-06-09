@@ -34,6 +34,7 @@ cmp.setup({
 	sources = {
 
 		{ name = "nvim_lsp" },
+		{ name = 'orgmode' },
 
 		-- For luasnip user.
 		{ name = "luasnip" },
