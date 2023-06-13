@@ -85,4 +85,12 @@ dap.configurations.go = {
 	  return vim.split(args, ' ')
 	end
   },
+  -- debug test
+  {
+	type = 'go',
+	name = "Debug test",
+	request = "launch",
+	mode = "test",
+	program = "${file}"
+  },
 }
