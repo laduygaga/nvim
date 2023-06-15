@@ -102,6 +102,19 @@ return require('packer').startup(function(use)
     require('orgmode').setup{}
   end
   }
+  use {  'TobinPalmer/pastify.nvim', -- requie pms python-neovim python pillow
+  cmd = { 'Pastify' },
+  config = function()
+    require('pastify').setup {
+	  opts = {
+		absolute_path = false, -- use absolute or relative path to the working directory
+        apikey = "1cac60eaeb1877f098ead335054f6b68", -- Needed if you want to save online.
+		local_path = '/assets/imgs/', -- The path to put local files in, ex ~/Projects/<name>/assets/images/<imgname>.png
+		save = 'local', -- Either 'local' or 'online'
+	  },
+    }
+  end
+  }
 
   if packer_bootstrap then
     require('packer').sync()
