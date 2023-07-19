@@ -91,7 +91,7 @@ return require('packer').startup(function(use)
   -- use { 'ms-jpq/coq_nvim', branch = 'coq' }
   -- use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
   -- use { 'ms-jpq/coq.thirdparty', branch = '3p' }
-  use { "tjdevries/sg.nvim", requires = { "nvim-lua/plenary.nvim" }, run = "cargo build --workspace" }
+  use { 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua' }
   use {
     'stevearc/aerial.nvim',
     config = function() require('aerial').setup() end
@@ -108,7 +108,7 @@ return require('packer').startup(function(use)
     require('pastify').setup {
 	  opts = {
 		absolute_path = false, -- use absolute or relative path to the working directory
-        apikey = "1cac60eaeb1877f098ead335054f6b68", -- Needed if you want to save online.
+        apikey = "1cac60eaeb1877f098ead335054f6b68 (https://api.imgbb.com/)", -- Needed if you want to save online.
 		local_path = '/assets/imgs/', -- The path to put local files in, ex ~/Projects/<name>/assets/images/<imgname>.png
 		save = 'local', -- Either 'local' or 'online'
 	  },
