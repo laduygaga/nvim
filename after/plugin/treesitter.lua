@@ -41,6 +41,7 @@ require'nvim-treesitter.configs'.setup {
 	"cmake",
 	"vim",
 	"dockerfile",
+	"dart",
   },
 }
 

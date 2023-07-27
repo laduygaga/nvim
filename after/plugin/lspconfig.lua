@@ -85,6 +85,7 @@ nvim_lsp.tsserver.setup{
 }
 
 nvim_lsp.lua_ls.setup {
+  on_attach = on_attach,
   settings = {
     Lua = {
       diagnostics = {
@@ -94,6 +95,11 @@ nvim_lsp.lua_ls.setup {
     },
   },
 }
+
+nvim_lsp.dartls.setup {
+  on_attach = on_attach,
+}
+
 
 
 -- Setup the LSP server to attach when you edit an sg:// buffer

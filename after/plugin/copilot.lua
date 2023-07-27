@@ -18,6 +18,7 @@ vim.g.copilot_filetypes = {
   ["vim"] = true,
   ["php"] = true,
   ["yaml"] = true,
+  ["dart"] = true,
 }
 
 

@@ -26,6 +26,7 @@ local autocmds = {
         { "BufEnter", "*.cpp", "nnoremap  <leader>2 :w<CR>:!clear;g++ -o %:r %:p<CR>:!./%:r<CR>" };
         { "BufEnter", "*.rs", "nnoremap	<leader>2 :w<CR>:!clear; rustc % <CR>:!./%:r<CR>" };
         { "BufEnter", "*.go", "nnoremap <leader>2 :w<CR>:%w !go run %<CR>" };
+        { "BufEnter", "*.dart", "nnoremap <leader>2 :w<CR>:%w !dart %<CR>" };
         { "BufEnter", "*.lua", "nnoremap <leader>2 :w<CR>:%w !lua %<CR>" };
 	};
 	bufleave = {
@@ -82,6 +83,9 @@ local autocmds = {
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <F10> :lua require'dap'.step_out()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>dr :lua require'dap'.repl.toggle()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>du :lua require("dapui").toggle()<CR> ]]};
+	};
+	dart = {
+		{ "BufEnter", "*.dart", [[ setlocal tabstop=2 shiftwidth=2 ]]};
 	};
 	floatterm = {
 		-- floattermupdate when resize window
