@@ -20,7 +20,7 @@ local autocmds = {
         { "BufEnter", "*.sh", "vnoremap <leader>2 !bash<CR>" };
         { "BufEnter", "*.js", "nnoremap <leader>2 :%w !node<CR>" };
         { "BufEnter", "*.js", "vnoremap <leader>2 !node<CR>" };
-        { "BufEnter", "*.pl", "<leader>2 :%w !perl<CR>" };
+        { "BufEnter", "*.pl", "nnoremap <leader>2 :%w !perl<CR>" };
         { "BufEnter", "*.pl", "vnoremap <leader>2 !perl<CR>" };
         { "BufEnter", "*.c", "nnoremap  <leader>2 :w<CR>:!clear;gcc -o %:r %:p<CR>:!./%:r<CR>" };
         { "BufEnter", "*.cpp", "nnoremap  <leader>2 :w<CR>:!clear;g++ -o %:r %:p<CR>:!./%:r<CR>" };
@@ -85,7 +85,8 @@ local autocmds = {
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>du :lua require("dapui").toggle()<CR> ]]};
 	};
 	dart = {
-		{ "BufEnter", "*.dart", [[ setlocal tabstop=2 shiftwidth=2 ]]};
+		-- use spaces instead of tabs
+		{ "BufEnter", "*.dart", [[ setlocal tabstop=2 shiftwidth=2 expandtab ]]};
 	};
 	floatterm = {
 		-- floattermupdate when resize window
