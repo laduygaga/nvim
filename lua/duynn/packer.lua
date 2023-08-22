@@ -27,7 +27,7 @@ return require('packer').startup(function(use)
       requires = { 'nvim-telescope/telescope.nvim' },
       config = function()
           require'nvim-gpt'.setup {
-			  model = 'balanced',
+    		  model = 'balanced',
               window_width = 45,
               -- see more setup options in section 'Setup options' below
           }
@@ -98,6 +98,7 @@ return require('packer').startup(function(use)
   -- Post-install/update hook with call of vimscript function with argument
   use { "junegunn/fzf", run = ":call fzf#install()" }
 
+  use { 'nvim-telescope/telescope.nvim' }
 
   -- Use specific branch, dependency and run lua file after load
   -- use { 'ms-jpq/coq_nvim', branch = 'coq' }
