@@ -22,12 +22,12 @@ return require('packer').startup(function(use)
   --     }
   -- })
   use({
-      'archibate/nvim-gpt',
+      'laduygaga/nvim-gpt',
       -- optional for supporting ':Telescope nvim-gpt gpt_model/gpt_history/gpt_template' commands
       requires = { 'nvim-telescope/telescope.nvim' },
       config = function()
           require'nvim-gpt'.setup {
-              model = 'gpt-3.5-turbo',
+			  model = 'balanced',
               window_width = 45,
               -- see more setup options in section 'Setup options' below
           }
