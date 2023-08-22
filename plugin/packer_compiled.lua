@@ -74,12 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["ChatGPT.nvim"] = {
-    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fchatgpt\frequire\0" },
-    loaded = true,
-    path = "/home/duy/.local/share/nvim/site/pack/packer/start/ChatGPT.nvim",
-    url = "https://github.com/jackMort/ChatGPT.nvim"
-  },
   LuaSnip = {
     loaded = true,
     path = "/home/duy/.local/share/nvim/site/pack/packer/start/LuaSnip",
@@ -178,11 +172,6 @@ _G.packer_plugins = {
     path = "/home/duy/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
   },
-  ["nui.nvim"] = {
-    loaded = true,
-    path = "/home/duy/.local/share/nvim/site/pack/packer/start/nui.nvim",
-    url = "https://github.com/MunifTanjim/nui.nvim"
-  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/duy/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -212,6 +201,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/duy/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text",
     url = "https://github.com/theHamsta/nvim-dap-virtual-text"
+  },
+  ["nvim-gpt"] = {
+    config = { "\27LJ\2\n`\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\nmodel\18gpt-3.5-turbo\17window_width\3-\nsetup\rnvim-gpt\frequire\0" },
+    loaded = true,
+    path = "/home/duy/.local/share/nvim/site/pack/packer/start/nvim-gpt",
+    url = "https://github.com/archibate/nvim-gpt"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -246,7 +241,7 @@ _G.packer_plugins = {
   },
   ["pastify.nvim"] = {
     commands = { "Pastify" },
-    config = { "\27LJ\2\nÀ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\topts\1\0\0\1\0\4\vapikey>1cac60eaeb1877f098ead335054f6b68 (https://api.imgbb.com/)\18absolute_path\1\15local_path\18/assets/imgs/\tsave\nlocal\nsetup\fpastify\frequire\0" },
+    config = { "\27LJ\2\nÀ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\topts\1\0\0\1\0\4\18absolute_path\1\15local_path\18/assets/imgs/\tsave\nlocal\vapikey>1cac60eaeb1877f098ead335054f6b68 (https://api.imgbb.com/)\nsetup\fpastify\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -267,11 +262,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/duy/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
-  },
-  ["sg.nvim"] = {
-    loaded = true,
-    path = "/home/duy/.local/share/nvim/site/pack/packer/start/sg.nvim",
-    url = "https://github.com/sourcegraph/sg.nvim"
   },
   tagbar = {
     loaded = true,
@@ -335,6 +325,10 @@ time([[Defining packer_plugins]], false)
 time([[Setup for markdown-preview.nvim]], true)
 try_loadstring("\27LJ\2\n=\0\0\2\0\4\0\0056\0\0\0009\0\1\0005\1\3\0=\1\2\0K\0\1\0\1\2\0\0\rmarkdown\19mkdp_filetypes\6g\bvim\0", "setup", "markdown-preview.nvim")
 time([[Setup for markdown-preview.nvim]], false)
+-- Config for: nvim-gpt
+time([[Config for nvim-gpt]], true)
+try_loadstring("\27LJ\2\n`\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\nmodel\18gpt-3.5-turbo\17window_width\3-\nsetup\rnvim-gpt\frequire\0", "config", "nvim-gpt")
+time([[Config for nvim-gpt]], false)
 -- Config for: aerial.nvim
 time([[Config for aerial.nvim]], true)
 try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\vaerial\frequire\0", "config", "aerial.nvim")
@@ -343,10 +337,6 @@ time([[Config for aerial.nvim]], false)
 time([[Config for orgmode]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\forgmode\frequire\0", "config", "orgmode")
 time([[Config for orgmode]], false)
--- Config for: ChatGPT.nvim
-time([[Config for ChatGPT.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fchatgpt\frequire\0", "config", "ChatGPT.nvim")
-time([[Config for ChatGPT.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

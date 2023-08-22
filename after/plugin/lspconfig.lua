@@ -103,10 +103,15 @@ nvim_lsp.dartls.setup {
 
 
 -- Setup the LSP server to attach when you edit an sg:// buffer
-require("sg").setup {
+-- check is sg installed, if not return
+if not pcall(require, "sg") then
+  print("sg not installed")
+else
+  require("sg").setup {
   -- Pass your own custom attach function
   --    If you do not pass your own attach function, then the following maps are provide:
   --        - gd -> goto definition
   --        - gr -> goto references
   on_attach = on_attach,
 }
+end

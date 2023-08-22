@@ -10,16 +10,28 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function(use)
+  -- use({
+  --   "jackMort/ChatGPT.nvim",
+  --     config = function()
+  --       require("chatgpt").setup()
+  --     end,
+  --     requires = {
+  --       "MunifTanjim/nui.nvim",
+  --       "nvim-lua/plenary.nvim",
+  --       "nvim-telescope/telescope.nvim"
+  --     }
+  -- })
   use({
-    "jackMort/ChatGPT.nvim",
+      'archibate/nvim-gpt',
+      -- optional for supporting ':Telescope nvim-gpt gpt_model/gpt_history/gpt_template' commands
+      requires = { 'nvim-telescope/telescope.nvim' },
       config = function()
-        require("chatgpt").setup()
+          require'nvim-gpt'.setup {
+              model = 'gpt-3.5-turbo',
+              window_width = 45,
+              -- see more setup options in section 'Setup options' below
+          }
       end,
-      requires = {
-        "MunifTanjim/nui.nvim",
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim"
-      }
   })
   -- nvim inside chrome
   -- use {
@@ -91,13 +103,12 @@ return require('packer').startup(function(use)
   -- use { 'ms-jpq/coq_nvim', branch = 'coq' }
   -- use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
   -- use { 'ms-jpq/coq.thirdparty', branch = '3p' }
-  use { 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua' }
+  -- use { 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua' }
   use {
     'stevearc/aerial.nvim',
     config = function() require('aerial').setup() end
   }
   use 'ofirgall/goto-breakpoints.nvim'
-  use {'nvim-treesitter/nvim-treesitter'}
   use {'nvim-orgmode/orgmode', config = function()
     require('orgmode').setup{}
   end
