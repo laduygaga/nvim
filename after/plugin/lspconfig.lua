@@ -105,7 +105,7 @@ nvim_lsp.dartls.setup {
 -- Setup the LSP server to attach when you edit an sg:// buffer
 -- check is sg installed, if not return
 if not pcall(require, "sg") then
-  print("sg not installed")
+  -- print("sg not installed")
 else
   require("sg").setup {
   -- Pass your own custom attach function

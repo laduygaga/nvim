@@ -1,5 +1,5 @@
 if not pcall(require, "chatgpt") then
-  print("jackMort/ChatGPT.nvim not installed")
+  -- print("jackMort/ChatGPT.nvim not installed")
   return
 else
   require("chatgpt").setup({
