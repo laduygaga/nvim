@@ -3,7 +3,15 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
 	-- disable for large files or html
 	disable = function()
-		return vim.fn.line("$") > 5000  -- or vim.bo.filetype == "html"
+		if vim.bo.filetype == 'html' or vim.bo.filetype == 'javascript' then
+			for i = 1, vim.fn.line("$") do
+				local line = vim.fn.getline(i)
+				if #line > 200 then
+					return true
+				end
+			end
+		end
+		return vim.fn.line("$") > 5000
 	end,
   },
   indent = {
