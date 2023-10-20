@@ -88,6 +88,9 @@ local autocmds = {
 		-- use spaces instead of tabs
 		{ "BufEnter", "*.dart", [[ setlocal tabstop=2 shiftwidth=2 expandtab ]]};
 	};
+	html = {
+		{ "BufEnter", "*.html", [[ vnoremap <leader>f :call FormatAndIndentHTML()<cr> ]]};
+	};
 	floatterm = {
 		-- floattermupdate when resize window
 		{ "VimResized", "*", [[ FloatermUpdate ]] };

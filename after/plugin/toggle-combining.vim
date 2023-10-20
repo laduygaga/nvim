@@ -32,3 +32,14 @@ function! s:ToggleCombining( line1, line2, character )
 
     execute a:line1.','.a:line2.'s/\%V'.l:text.'/'.l:finalText.'/'
 endfunction
+
+function! FormatAndIndentHTML()
+    " Step 1: Break HTML tags onto new lines
+    execute 's/<[^>]*>/\r&\r/g'
+
+    " Step 2: Remove empty lines
+    execute 'g/^$/d'
+
+    " Step 3: Re-indent the entire buffer
+    normal! gg=G
+endfunction
