@@ -24,8 +24,8 @@ require("dapui").setup({
     -- },
     {
       elements = {
-		{id = "repl", size = 0.75},
 		{id = "breakpoints", size = 0.25},
+		{id = "repl", size = 0.75},
       },
       size = 0.3,
       position = "bottom",
