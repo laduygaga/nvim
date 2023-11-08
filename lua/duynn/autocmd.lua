@@ -5,7 +5,7 @@ local function nvim_create_augroups(definitions)
     for group_name, definition in pairs(definitions) do
         api.nvim_create_augroup(group_name, {})
         for _, def in ipairs(definition) do
-            api.nvim_create_autocmd(def[1], {pattern=def[2], command=def[3]})
+            api.nvim_command("autocmd " .. group_name .. " " .. table.concat(def, " "))
         end
     end
 end
