@@ -28,6 +28,7 @@ local autocmds = {
         { "BufEnter", "*.go", "nnoremap <leader>2 :w<CR>:%w !go run %<CR>" };
         { "BufEnter", "*.dart", "nnoremap <leader>2 :w<CR>:%w !dart %<CR>" };
         { "BufEnter", "*.lua", "nnoremap <leader>2 :w<CR>:%w !lua %<CR>" };
+        { "BufEnter", "*.hs", "nnoremap  <leader>2 :w<CR>:!clear;ghc -dynamic %:p<CR>:!./%:r<CR>" };
 	};
 	bufleave = {
 		{ "BufLeave", "*", [[call system("xsel -ib", getreg('+'))]] }; -- prevent loss of clipboard contents when leaving buffer
