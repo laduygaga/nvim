@@ -39,7 +39,8 @@ vim.cmd[[let &t_EI.="\e[1 q"]]  -- EI = EXIT INSERT mode
 
 
 -- FZF use fd
-vim.cmd[[let $FZF_DEFAULT_COMMAND = "fd --type f"]]
+-- vim.cmd[[let $FZF_DEFAULT_COMMAND = "fd --type f"]]
+vim.cmd[[let $FZF_DEFAULT_COMMAND = "fd --no-ignore-vcs"]]
 
 -- netrw
 vim.cmd[[let g:netrw_banner=0]]
