@@ -92,6 +92,10 @@ local autocmds = {
 	html = {
 		{ "BufEnter", "*.html", [[ vnoremap <leader>f :call FormatAndIndentHTML()<cr> ]]};
 	};
+	gohtml = {
+		-- set syntax=html when enter gohtml file
+		{ "BufEnter", "*.gohtml", [[ setlocal syntax=html ]]};
+	};
 	floatterm = {
 		-- floattermupdate when resize window
 		{ "VimResized", "*", [[ FloatermUpdate ]] };
