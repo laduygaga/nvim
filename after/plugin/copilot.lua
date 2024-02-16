@@ -1,7 +1,7 @@
 vim.api.nvim_set_keymap("i", "<C-f>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_filetypes = {
-  -- ["*"] = true,
+  ["*"] = true,
   ["javascript"] = true,
   ["sql"] = true,
   ["html"] = true,
