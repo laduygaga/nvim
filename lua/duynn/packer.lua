@@ -70,7 +70,7 @@ return require('packer').startup(function(use)
   use 'mfussenegger/nvim-dap-python'
   use 'leoluz/nvim-dap-go'
   use 'theHamsta/nvim-dap-virtual-text'
-  use 'rcarriga/nvim-dap-ui'
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
   use 'jbyuki/one-small-step-for-vimkind'
   use 'neovim/nvim-lspconfig'
   use 'github/copilot.vim'
