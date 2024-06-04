@@ -21,18 +21,18 @@ return require('packer').startup(function(use)
   --       "nvim-telescope/telescope.nvim"
   --     }
   -- })
-  use({
-      'laduygaga/nvim-gpt',
-      -- optional for supporting ':Telescope nvim-gpt gpt_model/gpt_history/gpt_template' commands
-      requires = { 'nvim-telescope/telescope.nvim' },
-      config = function()
-          require'nvim-gpt'.setup {
-    		  model = 'balanced',
-              window_width = 45,
-              -- see more setup options in section 'Setup options' below
-          }
-      end,
-  })
+  -- use({
+  --     'laduygaga/nvim-gpt',
+  --     -- optional for supporting ':Telescope nvim-gpt gpt_model/gpt_history/gpt_template' commands
+  --     requires = { 'nvim-telescope/telescope.nvim' },
+  --     config = function()
+  --         require'nvim-gpt'.setup {
+  --   		  model = 'balanced',
+  --             window_width = 45,
+  --             -- see more setup options in section 'Setup options' below
+  --         }
+  --     end,
+  -- })
   -- nvim inside chrome
   -- use {
   --     'glacambre/firenvim',
@@ -131,6 +131,22 @@ return require('packer').startup(function(use)
   	config = function()
   		require('Comment').setup()
   	end
+  }
+  use {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    branch = 'canary',
+    requires = {
+      -- { 'zbirenbaum/copilot.lua' },
+      { 'github/copilot.vim' },
+      { 'nvim-lua/plenary.nvim' }
+    },
+    config = function()
+      require('CopilotChat').setup({
+        debug = true, -- Enable debugging
+        -- See Configuration section for rest
+      })
+    end
+    -- See Commands section for default commands if you want to lazy load on them
   }
 
   if packer_bootstrap then

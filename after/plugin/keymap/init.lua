@@ -80,8 +80,8 @@ nnoremap("[b", "<cmd> lua require('goto-breakpoints').prev()<CR>", {silent=true}
 
 -- toggle chatgpt
 -- nnoremap("<leader>c", "<cmd>ChatGPT<CR>", { silent = true })
-nnoremap("<leader>c", "<cmd>GPTToggle<CR>", { silent = true })
-vnoremap("<leader>c", "<cmd>:%GPTCode<CR>", { silent = true })
+-- nnoremap("<leader>c", "<cmd>GPTToggle<CR>", { silent = true })
+-- vnoremap("<leader>c", "<cmd>:%GPTCode<CR>", { silent = true })
 
 -- fold
 nnoremap("<space>", "za", { silent = true })
