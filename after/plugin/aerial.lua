@@ -125,7 +125,7 @@ require("aerial").setup({
 
   -- When jumping to a symbol, highlight the line for this many ms.
   -- Set to false to disable
-  highlight_on_jump = 300,
+  highlight_on_jump = 100,
 
   -- Define symbol icons. You can also specify "<Symbol>Collapsed" to change the
   -- icon when the tree is collapsed at that symbol, or "Collapsed" to specify a

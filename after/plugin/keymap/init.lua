@@ -78,6 +78,10 @@ nnoremap("<C-h>", "20zh", { silent = true })
 nnoremap("]b", "<cmd> lua require('goto-breakpoints').next()<CR>", {silent=true})
 nnoremap("[b", "<cmd> lua require('goto-breakpoints').prev()<CR>", {silent=true})
 
+-- copilot chat
+nnoremap("<leader>c", "<cmd>CopilotChatToggle<CR>", { silent = true })
+
+
 -- toggle chatgpt
 -- nnoremap("<leader>c", "<cmd>ChatGPT<CR>", { silent = true })
 -- nnoremap("<leader>c", "<cmd>GPTToggle<CR>", { silent = true })
