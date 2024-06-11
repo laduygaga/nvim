@@ -11,7 +11,7 @@ require'nvim-treesitter.configs'.setup {
 				end
 			end
 		end
-		return vim.fn.line("$") > 5000
+		return vim.fn.line("$") > 10000
 	end,
   },
   indent = {
