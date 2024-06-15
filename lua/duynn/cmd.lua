@@ -4,6 +4,7 @@ vim.cmd[[syntax on]]
 
 -- colorscheme
 vim.cmd[[colorscheme peachpuff]]
+vim.cmd[[set notermguicolors]]
 
 -- visual
 vim.cmd[[hi Normal ctermfg=None ctermbg=None guibg=None]]
