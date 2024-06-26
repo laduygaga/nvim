@@ -38,6 +38,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader><leader>td', '<cmd>Telescope diagnostics<CR>', opts)
   -- lsp rename
   buf_set_keymap('n', '<leader><leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  -- lsp finder
+  -- buf_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 end
 
 --nvim_lsp.tsserver.setup {

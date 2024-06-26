@@ -68,7 +68,7 @@ tnoremap("<C-]>", "<C-\\><C-n>", { silent = true })
 nnoremap("gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
 -- source graph
-nnoremap("<leader><space>", '<cmd>lua require("sg.telescope").fuzzy_search_results()<CR>', { silent = true })
+-- nnoremap("<leader><space>", '<cmd>lua require("sg.telescope").fuzzy_search_results()<CR>', { silent = true })
 
 -- scroll horizontally
 nnoremap("<C-l>", "20zl", { silent = true })
