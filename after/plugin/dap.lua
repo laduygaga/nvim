@@ -94,3 +94,17 @@ dap.configurations.go = {
 	program = "${file}"
   },
 }
+
+dap.configurations.python = {
+    {
+        type = 'python';
+        request = 'launch';
+        name = 'Launch file';
+
+        program = "${file}";  -- This configuration will launch the current file if used.
+        pythonPath = function()
+            return "/home/duy/python/src/debugpy/bin/python"  -- Update with your Python path
+        end;
+        justMyCode = false;  -- Set this to false to include library and framework code
+    },
+}
