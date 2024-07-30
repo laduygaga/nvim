@@ -55,6 +55,7 @@ local autocmds = {
 		{ "BufEnter", "*.py", [[nnoremap <silent> <leader>do :lua require('dap-python').test_class()<CR>]] };
 	};
 	go_debugger = {
+		{ "BufEnter", "*.go", [[ nnoremap <leader>f :%!gofmt<cr> ]]};
 		{ "BufEnter", "*.go", [[ vnoremap <silent> g// :norm 0i// <esc>]] };
 		{ "BufEnter", "*.go", [[ vnoremap <silent> g/ :norm 0xxx<esc>]] };
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>]] };
