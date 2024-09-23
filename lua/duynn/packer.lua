@@ -74,7 +74,8 @@ return require('packer').startup(function(use)
   use 'jbyuki/one-small-step-for-vimkind'
   use 'neovim/nvim-lspconfig'
   use 'github/copilot.vim'
-  use 'kkharji/lspsaga.nvim'
+  -- use 'kkharji/lspsaga.nvim'
+  -- use {'stevearc/dressing.nvim'}
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'jmerle/competitive-companion'

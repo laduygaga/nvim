@@ -59,13 +59,14 @@ nnoremap("<leader>v", "<cmd>MarkdownPreviewToggle<CR>", { silent = true })
 nnoremap("<F2>", "<cmd>lua ToggleExpandtab()<CR>", { silent = true })
 nnoremap("<F4>", "<cmd>lua ToggleColorscheme()<CR>", { silent = true })
 
-nnoremap("]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
-nnoremap("[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+-- nnoremap("]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
+-- nnoremap("[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+-- nnoremap("<leader><leader>r", "<cmd>Lspsaga rename<CR>", { silent = true })
+-- nnoremap("gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+
 nnoremap("<C-j>", "<cmd>FloatermToggle<CR>", { silent = true })
 tnoremap("<C-j>", "<C-\\><C-n>:FloatermToggle<CR>", { silent = true })
 tnoremap("<C-]>", "<C-\\><C-n>", { silent = true })
--- nnoremap("<leader><leader>r", "<cmd>Lspsaga rename<CR>", { silent = true })
-nnoremap("gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
 -- source graph
 -- nnoremap("<leader><space>", '<cmd>lua require("sg.telescope").fuzzy_search_results()<CR>', { silent = true })

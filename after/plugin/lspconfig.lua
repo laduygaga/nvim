@@ -39,8 +39,31 @@ local on_attach = function(client, bufnr)
   -- lsp rename
   buf_set_keymap('n', '<leader><leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   -- lsp finder
-  -- buf_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', 'gh', '<cmd>Telescope lsp_references<CR>', opts)
+  buf_set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 end
+
+vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1e1e2e' })
+vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#c678dd', bg = '#1e1e2e' })
+vim.diagnostic.config({
+  -- General diagnostic options
+  virtual_text = true,     -- Disable virtual text (optional)
+  signs = true,             -- Enable signs for diagnostics
+  underline = true,         -- Underline diagnostic lines
+  update_in_insert = false, -- Disable updates in insert mode
+
+  -- Float-specific settings
+  float = {
+    border = "rounded", -- Can be "single", "double", "rounded", "solid", "shadow"
+    source = "always",  -- Always show diagnostic source in float
+    header = "",        -- Header for diagnostic float (optional)
+    prefix = "",        -- Prefix for each diagnostic message
+    format = function(diagnostic)
+      return string.format("%s (%s)", diagnostic.message, diagnostic.source)
+    end,
+  }
+})
 
 --nvim_lsp.tsserver.setup {
 --  on_attach = on_attach,
@@ -84,7 +107,7 @@ nvim_lsp.vuels.setup{
 }
 
 -- npm install -g typescript typescript-language-server
-nvim_lsp.tsserver.setup{
+nvim_lsp.ts_ls.setup{
   on_attach = on_attach,
 }
 
