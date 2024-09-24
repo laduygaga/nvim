@@ -52,6 +52,7 @@ require'nvim-treesitter.configs'.setup {
 	"dart",
 	"vimdoc",
 	"query",
+	"diff",
   },
 }
 
