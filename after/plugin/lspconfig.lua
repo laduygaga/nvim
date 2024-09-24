@@ -44,6 +44,14 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 end
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover,
+  {
+    border = "rounded",  -- Options: "single", "double", "rounded", "solid", "shadow"
+    -- You can add additional options here if needed
+  }
+)
+
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1e1e2e' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#c678dd', bg = '#1e1e2e' })
 vim.diagnostic.config({
