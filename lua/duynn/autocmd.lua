@@ -70,6 +70,22 @@ local autocmds = {
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>dr :lua require'dap'.repl.toggle()<CR>]] };
 		{ "BufEnter", "*.go", [[ nnoremap <silent> <leader>du :lua require("dapui").toggle()<CR>]] };
 	};
+	js_debugger = {
+		{ "BufEnter", "*.js", [[ nnoremap <leader>f :%!gofmt<cr> ]]};
+		{ "BufEnter", "*.js", [[ vnoremap <silent> g// :norm 0i// <esc>]] };
+		{ "BufEnter", "*.js", [[ vnoremap <silent> g/ :norm 0xxx<esc>]] };
+		{ "BufEnter", "*.js", [[ nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>]] };
+		{ "BufEnter", "*.js", [[ nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint Condition: '))<CR>]] };
+		{ "BufEnter", "*.js", [[ nnoremap <silent> <leader>dl :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]] };
+		{ "BufEnter", "*.js", [[ vnoremap <silent> <CR> :lua require("dapui").eval()<CR>]] };
+		{ "BufEnter", "*.js", [[ nnoremap <silent> <leader>dc :lua require'dap'.continue()<CR>]] };
+		{ "BufEnter", "*.js", [[ nnoremap <silent> <leader>ds :lua require'dap'.close()<CR>]] };
+		{ "BufEnter", "*.js", [[ nnoremap <silent> <F8> :lua require'dap'.step_over()<CR>]] };
+		{ "BufEnter", "*.js", [[ nnoremap <silent> <F9> :lua require'dap'.step_into()<CR>]] };
+		{ "BufEnter", "*.js", [[ nnoremap <silent> <F10> :lua require'dap'.step_out()<CR>]] };
+		{ "BufEnter", "*.js", [[ nnoremap <silent> <leader>dr :lua require'dap'.repl.toggle()<CR>]] };
+		{ "BufEnter", "*.js", [[ nnoremap <silent> <leader>du :lua require("dapui").toggle()<CR>]] };
+	};
 	lua_debugger = {
 		{ "BufEnter", "*.lua", [[ vnoremap <silent> g// :norm 0i-- <esc>]] };
 		{ "BufEnter", "*.lua", [[ vnoremap <silent> g/ :norm 0xxx<esc>]] };
