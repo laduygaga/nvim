@@ -88,12 +88,13 @@ nvim_lsp.pyright.setup{
 }
 
 nvim_lsp.rust_analyzer.setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    -- Server-specific settings...
-    settings = {
-      ["rust-analyzer"] = {}
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = false;
+      }
     }
+  }
 }
 
 nvim_lsp.gopls.setup{

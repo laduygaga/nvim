@@ -24,7 +24,6 @@ local autocmds = {
         { "BufEnter", "*.pl", "vnoremap <leader>2 !perl<CR>" };
         { "BufEnter", "*.c", "nnoremap  <leader>2 :w<CR>:!clear;gcc -o %:r %:p<CR>:!./%:r<CR>" };
         { "BufEnter", "*.cpp", "nnoremap  <leader>2 :w<CR>:!clear;g++ -o %:r %:p<CR>:!./%:r<CR>" };
-        { "BufEnter", "*.rs", "nnoremap	<leader>2 :w<CR>:!clear; rustc % <CR>:!./%:r<CR>" };
         { "BufEnter", "*.go", "nnoremap <leader>2 :w<CR>:%w !go run %<CR>" };
         { "BufEnter", "*.dart", "nnoremap <leader>2 :w<CR>:%w !dart %<CR>" };
         { "BufEnter", "*.lua", "nnoremap <leader>2 :w<CR>:%w !lua %<CR>" };
@@ -36,6 +35,9 @@ local autocmds = {
 	bufreadpost = {
 		{ "BufReadPost", "*", [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]] }; -- restore place in file from previous session
 		{ "BufReadPost", "quickfix", [[ nnoremap <buffer> <CR> <CR>]] };
+	};
+	rus_debugger = {
+		{ "BufEnter", "*.rs", [[ nnoremap <silent> <leader>2 :w<CR>:!clear<CR>:!cargo run<CR>]] };
 	};
 	python_debugger = {
 		{ "BufEnter", "*.py", [[ vnoremap <silent> g// :norm 0i# <esc>]] };
