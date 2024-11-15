@@ -87,15 +87,37 @@ nvim_lsp.pyright.setup{
   on_attach = on_attach,
 }
 
-nvim_lsp.rust_analyzer.setup{
-  settings = {
-    ['rust-analyzer'] = {
-      diagnostics = {
-        enable = false;
-      }
-    }
-  }
-}
+nvim_lsp.rust_analyzer.setup({
+    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    on_attach = on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            cargo = {
+                loadOutDirsFromCheck = true,
+                allFeatures = true
+            },
+            procMacro = {
+                enable = true
+            },
+            checkOnSave = {
+                command = "clippy"
+            },
+        }
+    },
+    root_dir = nvim_lsp.util.root_pattern("Cargo.toml", "rust-project.json"),
+})
+-- nvim_lsp.rust_analyzer.setup{
+--   settings = {
+--     ['rust-analyzer'] = {
+--       diagnostics = {
+--         enable = false;
+--       }
+--     }
+--   },
+--   flags = {
+--     exit_timeout = false,
+--   }
+-- }
 
 nvim_lsp.gopls.setup{
   on_attach = on_attach,

@@ -89,8 +89,6 @@ return require('packer').startup(function(use)
   use 'nvim-telescope/telescope.nvim'
   use 'folke/lsp-colors.nvim'
 
-
-
   -- Plugins can have post-install/update hooks
   use({ "iamcco/markdown-preview.nvim", run = ":call mkdp#util#install()", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
