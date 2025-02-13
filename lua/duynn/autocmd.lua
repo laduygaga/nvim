@@ -104,6 +104,20 @@ local autocmds = {
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>dr :lua require'dap'.repl.toggle()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>du :lua require("dapui").toggle()<CR> ]]};
 	};
+	php_debugger = {
+		-- { "BufEnter", "*.php", [[ nnoremap <leader>f :%!gofmt<cr> ]]};
+		{ "BufEnter", "*.php", [[ nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>]] };
+		{ "BufEnter", "*.php", [[ nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint Condition: '))<CR>]] };
+		{ "BufEnter", "*.php", [[ nnoremap <silent> <leader>dl :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>]] };
+		{ "BufEnter", "*.php", [[ vnoremap <silent> <CR> :lua require("dapui").eval()<CR>]] };
+		{ "BufEnter", "*.php", [[ nnoremap <silent> <leader>dc :lua require'dap'.continue()<CR>]] };
+		{ "BufEnter", "*.php", [[ nnoremap <silent> <leader>ds :lua require'dap'.close()<CR>]] };
+		{ "BufEnter", "*.php", [[ nnoremap <silent> <F8> :lua require'dap'.step_over()<CR>]] };
+		{ "BufEnter", "*.php", [[ nnoremap <silent> <F9> :lua require'dap'.step_into()<CR>]] };
+		{ "BufEnter", "*.php", [[ nnoremap <silent> <F10> :lua require'dap'.step_out()<CR>]] };
+		{ "BufEnter", "*.php", [[ nnoremap <silent> <leader>dr :lua require'dap'.repl.toggle()<CR>]] };
+		{ "BufEnter", "*.php", [[ nnoremap <silent> <leader>du :lua require("dapui").toggle()<CR>]] };
+	};
 	dart = {
 		-- use spaces instead of tabs
 		{ "BufEnter", "*.dart", [[ setlocal tabstop=2 shiftwidth=2 expandtab ]]};

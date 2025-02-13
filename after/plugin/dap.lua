@@ -108,3 +108,43 @@ dap.configurations.python = {
         justMyCode = false;  -- Set this to false to include library and framework code
     },
 }
+
+
+-- php debugger configurations step
+
+-- install phpDebug : git clone https://github.com/xdebug/vscode-php-debug.git; cd vscode-php-debug; npm install && npm run build
+-- install php-xdebug
+-- config xdebug: append below lines to /etc/php/php.ini
+--[[
+[xdebug]
+zend_extension=xdebug
+xdebug.mode=debug
+xdebug.start_with_request=yes
+xdebug.client_host=127.0.0.1
+xdebug.client_port=9003
+xdebug.log=/tmp/xdebug.log
+]]
+
+dap.adapters.php = {
+    type = "executable",
+    command = "node",
+    args = { "/home/duy/.trash/vscode-php-debug/out/phpDebug.js" }
+}
+
+dap.configurations.php = {
+    {
+        name = "run current script",
+        type = "php",
+        request = "launch",
+		cwd = "${fileDirname}",
+		program = "${file}",
+		runtimeExecutable = "php",
+		-- log = true,
+	},
+    {
+        name = "listen address",
+        type = "php",
+        request = "launch",
+        port = 9003,
+	}
+}
