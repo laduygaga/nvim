@@ -159,6 +159,10 @@ nvim_lsp.dartls.setup {
   on_attach = on_attach,
 }
 
+-- phpactor
+nvim_lsp.phpactor.setup {
+  on_attach = on_attach,
+}
 
 
 -- Setup the LSP server to attach when you edit an sg:// buffer
