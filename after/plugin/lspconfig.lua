@@ -141,6 +141,7 @@ nvim_lsp.vuels.setup{
 -- npm install -g typescript typescript-language-server
 nvim_lsp.ts_ls.setup{
   on_attach = on_attach,
+  filetypes = { "typescript", "javascript", "vue" },
 }
 
 nvim_lsp.lua_ls.setup {
