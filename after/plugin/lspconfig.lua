@@ -55,6 +55,12 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1e1e2e' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#c678dd', bg = '#1e1e2e' })
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",  -- Optional: Adds rounded borders to the floating window
+    max_width = 80,      -- Set the maximum width
+})
+
 vim.diagnostic.config({
   -- General diagnostic options
   virtual_text = true,     -- Disable virtual text (optional)
@@ -66,6 +72,7 @@ vim.diagnostic.config({
   float = {
     border = "rounded", -- Can be "single", "double", "rounded", "solid", "shadow"
     source = "always",  -- Always show diagnostic source in float
+	max_width = 80,     -- Maximum width of a diagnostic float
     header = "",        -- Header for diagnostic float (optional)
     prefix = "",        -- Prefix for each diagnostic message
     format = function(diagnostic)
@@ -78,11 +85,6 @@ vim.diagnostic.config({
 --  on_attach = on_attach,
 --  filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
 --}
-
-local lsp_flags = {
-  -- This is the default in Nvim 0.7+
-  debounce_text_changes = 150,
-}
 
 nvim_lsp.pyright.setup{
   on_attach = on_attach,
