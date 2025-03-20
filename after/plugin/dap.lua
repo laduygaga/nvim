@@ -33,6 +33,7 @@ dap.configurations.go = {
 	type = 'go',
 	name = "Debug",
 	request = "launch",
+    outputMode = "remote",
 	program = function()
 	  local git_files = vim.fn.systemlist('git ls-files | grep main.go$')
 	  local enum_git_files = vim.fn.systemlist('git ls-files | grep main.go$ | grep -n main.go$')
@@ -50,6 +51,7 @@ dap.configurations.go = {
 	type = 'go',
 	name = "Debug (args)",
 	request = "launch",
+    outputMode = "remote",
 	program = function()
 	  local git_files = vim.fn.systemlist('git ls-files | grep main.go$')
 	  local enum_git_files = vim.fn.systemlist('git ls-files | grep main.go$ | grep -n main.go$')
@@ -71,6 +73,7 @@ dap.configurations.go = {
 	type = 'go',
 	name = "Debug current file",
 	request = "launch",
+    outputMode = "remote",
 	program = "${file}"
   },
   -- debug (args) current file
@@ -78,6 +81,7 @@ dap.configurations.go = {
 	type = 'go',
 	name = "Debug current file with args",
 	request = "launch",
+    outputMode = "remote",
 	program = "${file}",
 	-- input args
 	args = function()
@@ -90,6 +94,7 @@ dap.configurations.go = {
 	type = 'go',
 	name = "Debug test",
 	request = "launch",
+    outputMode = "remote",
 	mode = "test",
 	program = "${file}"
   },
