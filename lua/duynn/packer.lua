@@ -10,34 +10,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function(use)
-  -- use({
-  --   "jackMort/ChatGPT.nvim",
-  --     config = function()
-  --       require("chatgpt").setup()
-  --     end,
-  --     requires = {
-  --       "MunifTanjim/nui.nvim",
-  --       "nvim-lua/plenary.nvim",
-  --       "nvim-telescope/telescope.nvim"
-  --     }
-  -- })
-  -- use({
-  --     'laduygaga/nvim-gpt',
-  --     -- optional for supporting ':Telescope nvim-gpt gpt_model/gpt_history/gpt_template' commands
-  --     requires = { 'nvim-telescope/telescope.nvim' },
-  --     config = function()
-  --         require'nvim-gpt'.setup {
-  --   		  model = 'balanced',
-  --             window_width = 45,
-  --             -- see more setup options in section 'Setup options' below
-  --         }
-  --     end,
-  -- })
-  -- nvim inside chrome
-  -- use {
-  --     'glacambre/firenvim',
-  --     run = function() vim.fn['firenvim#install'](0) end 
-  -- }
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
@@ -80,8 +52,6 @@ return require('packer').startup(function(use)
   use 'jbyuki/one-small-step-for-vimkind'
   use 'neovim/nvim-lspconfig'
   use 'github/copilot.vim'
-  -- use 'kkharji/lspsaga.nvim'
-  -- use {'stevearc/dressing.nvim'}
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'jmerle/competitive-companion'
@@ -103,11 +73,6 @@ return require('packer').startup(function(use)
   -- Post-install/update hook with call of vimscript function with argument
   use { "junegunn/fzf", run = ":call fzf#install()" }
 
-
-  -- Use specific branch, dependency and run lua file after load
-  -- use { 'ms-jpq/coq_nvim', branch = 'coq' }
-  -- use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
-  -- use { 'ms-jpq/coq.thirdparty', branch = '3p' }
   use {
     'stevearc/aerial.nvim',
     config = function() require('aerial').setup() end
@@ -116,19 +81,6 @@ return require('packer').startup(function(use)
   use {'nvim-orgmode/orgmode', config = function()
     require('orgmode').setup{}
   end
-  }
-  use {  'TobinPalmer/pastify.nvim', -- requie pms python-neovim python pillow
-	cmd = { 'Pastify' },
-	config = function()
-	  require('pastify').setup {
-	    opts = {
-	  	absolute_path = false, -- use absolute or relative path to the working directory
-	  	apikey = "1cac60eaeb1877f098ead335054f6b68 (https://api.imgbb.com/)", -- Needed if you want to save online.
-	  	local_path = '/assets/imgs/', -- The path to put local files in, ex ~/Projects/<name>/assets/images/<imgname>.png
-	  	save = 'local', -- Either 'local' or 'online'
-	    },
-	  }
-	end
   }
   use {
     'numToStr/Comment.nvim',
