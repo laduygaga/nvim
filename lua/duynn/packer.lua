@@ -73,7 +73,7 @@ return require('packer').startup(function(use)
   use {
     "microsoft/vscode-js-debug",
     opt = true,
-    run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
+    run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
   }
   use 'theHamsta/nvim-dap-virtual-text'
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
@@ -108,7 +108,6 @@ return require('packer').startup(function(use)
   -- use { 'ms-jpq/coq_nvim', branch = 'coq' }
   -- use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
   -- use { 'ms-jpq/coq.thirdparty', branch = '3p' }
-  -- use { 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua' }
   use {
     'stevearc/aerial.nvim',
     config = function() require('aerial').setup() end

@@ -2,36 +2,17 @@
 
 local nvim_lsp = require('lspconfig')
 
--- require("coq_3p") {
---   { src = "bc", short_name = "MATH", precision = 6 }, --require bc
---   -- { src = "cow", trigger = "!cow" },				  -- require cowsay
---   -- { src = "figlet", short_name = "BIG" },		  -- require figlet
---   {
---     src = "repl",
---     sh = "bash",
---     shell = { p = "perl", n = "node", ... },
---     max_lines = 99,
---     deadline = 500,
---     unsafe = { "rm", "poweroff", "mv", ... }
---   },
---   { src = "nvimlua", short_name = "nLUA" },
---   { src = "vimtex", short_name = "vTEX" },
---   { src = "copilot", short_name = "COP", accept_key = "<c-f>" },
--- }
-
 -- Use an on_attach function to only map the following keys 
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   -- buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover({max_width = 80, border = "rounded"})<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
@@ -45,21 +26,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 end
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover,
-  {
-    border = "rounded",  -- Options: "single", "double", "rounded", "solid", "shadow"
-    -- You can add additional options here if needed
-  }
-)
-
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1e1e2e' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#c678dd', bg = '#1e1e2e' })
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",  -- Optional: Adds rounded borders to the floating window
-    max_width = 80,      -- Set the maximum width
-})
 
 vim.diagnostic.config({
   -- General diagnostic options
@@ -80,11 +48,6 @@ vim.diagnostic.config({
     end,
   }
 })
-
---nvim_lsp.tsserver.setup {
---  on_attach = on_attach,
---  filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
---}
 
 nvim_lsp.pyright.setup{
   on_attach = on_attach,
@@ -109,18 +72,6 @@ nvim_lsp.rust_analyzer.setup({
     },
     root_dir = nvim_lsp.util.root_pattern("Cargo.toml", "rust-project.json"),
 })
--- nvim_lsp.rust_analyzer.setup{
---   settings = {
---     ['rust-analyzer'] = {
---       diagnostics = {
---         enable = false;
---       }
---     }
---   },
---   flags = {
---     exit_timeout = false,
---   }
--- }
 
 nvim_lsp.gopls.setup{
   on_attach = on_attach,
@@ -166,18 +117,3 @@ nvim_lsp.dartls.setup {
 nvim_lsp.phpactor.setup {
   on_attach = on_attach,
 }
-
-
--- Setup the LSP server to attach when you edit an sg:// buffer
--- check is sg installed, if not return
-if not pcall(require, "sg") then
-  -- print("sg not installed")
-else
-  require("sg").setup {
-  -- Pass your own custom attach function
-  --    If you do not pass your own attach function, then the following maps are provide:
-  --        - gd -> goto definition
-  --        - gr -> goto references
-  on_attach = on_attach,
-}
-end
