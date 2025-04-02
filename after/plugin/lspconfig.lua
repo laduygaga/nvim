@@ -88,13 +88,13 @@ nvim_lsp.ccls.setup{
 -- sudo npm install -g vls
 nvim_lsp.vuels.setup{
   on_attach = on_attach,
-  -- filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+  filetypes = {'vue'}
 }
 
--- npm install -g typescript typescript-language-server
+-- sudo npm install -g typescript typescript-language-server
 nvim_lsp.ts_ls.setup{
   on_attach = on_attach,
-  filetypes = { "typescript", "javascript", "vue", "typescriptreact", "javascriptreact" },
+  filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
 }
 
 nvim_lsp.lua_ls.setup {
