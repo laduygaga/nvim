@@ -1,6 +1,7 @@
 local chat = require("CopilotChat")
 
 chat.setup({
+  model="gemini-2.5-pro",
   window = {
     layout = 'float', -- 'vertical', 'horizontal', 'float', 'replace'
     width = 0.5, -- fractional width of parent, or absolute width in columns when > 1
