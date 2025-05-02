@@ -117,3 +117,11 @@ nvim_lsp.dartls.setup {
 nvim_lsp.phpactor.setup {
   on_attach = on_attach,
 }
+
+nvim_lsp.cssls.setup({
+    on_attach = on_attach,
+    -- capabilities = capabilities, -- If you are using cmp, you might have custom capabilities defined
+    -- filetypes = { "css", "scss", "less" } -- Usually not needed, defaults are fine
+    -- cmd = { "vscode-css-languageserver-bin", "--stdio" } -- Usually not needed, lspconfig finds it
+})
+
