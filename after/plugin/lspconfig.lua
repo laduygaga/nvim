@@ -125,3 +125,8 @@ nvim_lsp.cssls.setup({
     -- cmd = { "vscode-css-languageserver-bin", "--stdio" } -- Usually not needed, lspconfig finds it
 })
 
+nvim_lsp.html.setup({
+    on_attach = on_attach,
+    -- capabilities = capabilities, -- Uncomment if using nvim-cmp capabilities
+    -- filetypes = { "html", "htmldjango", "html.handlebars" } -- Add related filetypes if needed
+})
