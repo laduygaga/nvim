@@ -58,6 +58,12 @@ return require('packer').startup(function(use)
   use 'p00f/cphelper.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'folke/lsp-colors.nvim'
+  use({
+    "stevearc/oil.nvim",
+    config = function()
+      require("oil").setup()
+    end,
+  })
 
   -- Plugins can have post-install/update hooks
   use({ "iamcco/markdown-preview.nvim", run = ":call mkdp#util#install()", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
@@ -84,9 +90,9 @@ return require('packer').startup(function(use)
   }
   use {
     'numToStr/Comment.nvim',
-  	config = function()
-  		require('Comment').setup()
-  	end
+    config = function()
+        require('Comment').setup()
+    end
   }
   use {
     'CopilotC-Nvim/CopilotChat.nvim',
