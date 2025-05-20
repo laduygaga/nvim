@@ -17,3 +17,22 @@ chat.setup({
     zindex = 1, -- determines if window is on top or below other floating windows
   },
 })
+
+-- this make nvim remember the last position of the chat window
+vim.api.nvim_create_autocmd({"BufLeave", "BufWinLeave"}, {
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype == "copilot-chat" then
+      vim.cmd("silent! mkview")
+    end
+  end
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype == "copilot-chat" then
+      vim.cmd("silent! loadview")
+    end
+  end
+})
+
