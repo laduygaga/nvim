@@ -111,7 +111,7 @@ local autocmds = {
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint Condition: '))<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>dl :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR> ]]};
 		{ "BufEnter", "*.lua", [[ vnoremap <silent> <CR> :lua require("dapui").eval()<CR> ]]};
-		{ "BufEnter", "*.lua", [[ nnoremap <silent> <F5> :lua require"osv".run_this()<CR> ]]};
+		{ "BufEnter", "*.lua", [[ nnoremap <silent> <F6> :lua require"osv".run_this()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>dc :lua require'dap'.continue()<CR> ]]};
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <leader>ds :lua require'dap'.close()<CR>]] };
 		{ "BufEnter", "*.lua", [[ nnoremap <silent> <F8> :lua require'dap'.step_over()<CR> ]]};
