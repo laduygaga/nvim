@@ -130,10 +130,15 @@ xdebug.client_port=9003
 xdebug.log=/tmp/xdebug.log
 ]]
 
+-- dap.adapters.php = {
+--     type = "executable",
+--     command = "node",
+--     args = { "/home/duy/.trash/vscode-php-debug/out/phpDebug.js" }
+-- }
+--
 dap.adapters.php = {
     type = "executable",
-    command = "node",
-    args = { "/home/duy/.trash/vscode-php-debug/out/phpDebug.js" }
+    command = "php-debug-adapter",
 }
 
 dap.configurations.php = {

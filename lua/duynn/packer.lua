@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  use 'mason-org/mason.nvim'
   -- Simple plugins can be specified as strings
   use  'hrsh7th/cmp-nvim-lsp'
   use  'hrsh7th/cmp-buffer'
