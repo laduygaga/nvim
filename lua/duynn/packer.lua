@@ -43,11 +43,11 @@ return require('packer').startup(function(use)
   use 'mfussenegger/nvim-dap-python'
   use 'leoluz/nvim-dap-go'
   use 'mxsdev/nvim-dap-vscode-js'
-  use {
-    "microsoft/vscode-js-debug",
-    opt = true,
-    run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
-  }
+  -- use {
+  --   "microsoft/vscode-js-debug",
+  --   opt = true,
+  --   run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+  -- }
   use 'theHamsta/nvim-dap-virtual-text'
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
   use 'jbyuki/one-small-step-for-vimkind'
