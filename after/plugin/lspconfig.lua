@@ -1,33 +1,28 @@
 -- vim.lsp.set_log_level("debug")
 
-local nvim_lsp = require('lspconfig')
-
 -- Use an on_attach function to only map the following keys 
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap=true, silent=true, buffer = bufnr }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  -- buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover({max_width = 80, border = "rounded"})<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<leader><leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '<leader><leader>td', '<cmd>Telescope diagnostics<CR>', opts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', '<leader><leader>ca', vim.lsp.buf.code_action, opts)
+  vim.keymap.set('n', '<leader><leader>td', '<cmd>Telescope diagnostics<CR>', opts)
   -- lsp rename
-  buf_set_keymap('n', '<leader><leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.keymap.set('n', '<leader><leader>r', vim.lsp.buf.rename, opts)
   -- lsp finder
-  buf_set_keymap('n', 'gh', '<cmd>Telescope lsp_references<CR>', opts)
-  buf_set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  vim.keymap.set('n', 'gh', '<cmd>Telescope lsp_references<CR>', opts)
+  vim.keymap.set('n', ']e', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '[e', vim.diagnostic.goto_prev, opts)
 end
 
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1e1e2e' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#c678dd', bg = '#1e1e2e' })
+vim.o.winborder = 'rounded' -- or 'single', 'double', 'solid', 'none'
 
 vim.diagnostic.config({
   -- General diagnostic options
@@ -49,84 +44,66 @@ vim.diagnostic.config({
   }
 })
 
-nvim_lsp.pyright.setup{
-  on_attach = on_attach,
-}
+-- Python
+vim.lsp.config('pyright', { on_attach = on_attach, })
+vim.lsp.enable('pyright')
 
-nvim_lsp.rust_analyzer.setup({
+-- Rust
+vim.lsp.config('rust_analyzer', {
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
     on_attach = on_attach,
     settings = {
         ["rust-analyzer"] = {
-            cargo = {
-                loadOutDirsFromCheck = true,
-                allFeatures = true
-            },
-            procMacro = {
-                enable = true
-            },
-            checkOnSave = {
-                command = "clippy"
-            },
+            cargo = { loadOutDirsFromCheck = true, allFeatures = true },
+            procMacro = { enable = true },
+            checkOnSave = { command = "clippy" },
         }
     },
-    root_dir = nvim_lsp.util.root_pattern("Cargo.toml", "rust-project.json"),
 })
+vim.lsp.enable('rust_analyzer')
 
-nvim_lsp.gopls.setup{
-  on_attach = on_attach,
-}
+-- Go
+vim.lsp.config('gopls', {on_attach = on_attach,})
+vim.lsp.enable('gopls')
 
-nvim_lsp.bashls.setup{
+-- Lua
+vim.lsp.config('lua_ls', {
   on_attach = on_attach,
-}
+  settings = { Lua = { diagnostics = { globals = {'vim'}, }, }, },
+})
+vim.lsp.enable('lua_ls')
 
-nvim_lsp.ccls.setup{
-  on_attach = on_attach,
-}
+-- Add more servers here as needed...
+vim.lsp.config('bashls', {on_attach = on_attach,})
+vim.lsp.enable('bashls')
+
+vim.lsp.config('ccls', {on_attach = on_attach,})
+vim.lsp.enable('ccls')
 
 -- sudo npm install -g vls
-nvim_lsp.vuels.setup{
-  on_attach = on_attach,
-  filetypes = {'vue'}
-}
+vim.lsp.config('vuels', {on_attach = on_attach, filetypes = {'vue'}})
+vim.lsp.enable('vuels')
 
 -- sudo npm install -g typescript typescript-language-server
-nvim_lsp.ts_ls.setup{
+-- TypeScript/JavaScript
+vim.lsp.config('ts_ls', {
   on_attach = on_attach,
   filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
-}
+})
+vim.lsp.enable('ts_ls')
 
-nvim_lsp.lua_ls.setup {
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-      },
-    },
-  },
-}
-
-nvim_lsp.dartls.setup {
-  on_attach = on_attach,
-}
+vim.lsp.config('dartls', {on_attach = on_attach,})
+vim.lsp.enable('dartls')
 
 -- phpactor
-nvim_lsp.phpactor.setup {
-  on_attach = on_attach,
-}
+vim.lsp.config('phpactor', {on_attach = on_attach,})
+vim.lsp.enable('phpactor')
 
-nvim_lsp.cssls.setup({
-    on_attach = on_attach,
-    -- capabilities = capabilities, -- If you are using cmp, you might have custom capabilities defined
-    -- filetypes = { "css", "scss", "less" } -- Usually not needed, defaults are fine
-    -- cmd = { "vscode-css-languageserver-bin", "--stdio" } -- Usually not needed, lspconfig finds it
-})
+vim.lsp.config('cssls', { on_attach = on_attach, })
+vim.lsp.enable('cssls')
 
-nvim_lsp.html.setup({
-    on_attach = on_attach,
-    -- capabilities = capabilities, -- Uncomment if using nvim-cmp capabilities
-    -- filetypes = { "html", "htmldjango", "html.handlebars" } -- Add related filetypes if needed
-})
+vim.lsp.config('html', { on_attach = on_attach, })
+vim.lsp.enable('html')
+
+-- omnisharp
+vim.lsp.config('omnisharp',{on_attach=on_attach,cmd={"omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid())},})
