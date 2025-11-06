@@ -107,3 +107,8 @@ vim.lsp.enable('html')
 
 -- omnisharp
 vim.lsp.config('omnisharp',{on_attach=on_attach,cmd={"omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid())},})
+
+
+-- Solidity LSP
+vim.lsp.config('solidity_ls', {on_attach = on_attach,})
+vim.lsp.enable('solidity_ls')

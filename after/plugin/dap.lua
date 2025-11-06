@@ -42,7 +42,8 @@ dap.configurations.go = {
 	  selected_file = string.gsub(selected_file, '%d+ ', '')
 	  -- selected_file to int
 	  selected_file = tonumber(selected_file)
-	  return git_files[selected_file]
+	  -- return git_files[selected_file]
+	  return "./" .. string.sub(git_files[selected_file], 1, -9)
 	end
 
   },
@@ -60,7 +61,10 @@ dap.configurations.go = {
 	  selected_file = string.gsub(selected_file, '%d+ ', '')
 	  -- selected_file to int
 	  selected_file = tonumber(selected_file)
-	  return git_files[selected_file]
+	  -- return git_files[selected_file]
+	  -- trim main.go from the path, use for module path instead of file path to avoid go mod issues
+	  -- return ./cmd/app/main.go -> ./cmd/app/
+	  return "./" .. string.sub(git_files[selected_file], 1, -9)
 	end,
 	-- input args
 	args = function()

@@ -1,7 +1,7 @@
 local chat = require("CopilotChat")
 
 chat.setup({
-  model="gemini-2.5-pro",
+  model="gpt-4.1",
   window = {
     temperature = 0.1,
     layout = 'float', -- 'vertical', 'horizontal', 'float', 'replace'
