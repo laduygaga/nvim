@@ -9,7 +9,7 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', { desc = 'LSP Implementation' })
   vim.keymap.set('n', '<leader><leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader><leader>td', '<cmd>Telescope diagnostics<CR>', opts)
   -- lsp rename
