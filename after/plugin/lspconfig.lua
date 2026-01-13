@@ -7,7 +7,8 @@ local on_attach = function(_, bufnr)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', { desc = 'LSP Definition' })
   vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
   vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', { desc = 'LSP Implementation' })
   vim.keymap.set('n', '<leader><leader>ca', vim.lsp.buf.code_action, opts)
