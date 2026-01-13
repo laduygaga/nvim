@@ -1,14 +1,15 @@
-command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+" 1. Helper function to dry up the logic
+function! s:fzf_rg(query, bang, dir)
+  let l:spec = fzf#vim#with_preview({'dir': a:dir})
+  call fzf#vim#grep(
+    \ 'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(a:query),
+    \ 1, l:spec, a:bang)
+endfunction
+
+" 2. Optimized Git Root search (uses a variable to avoid shell calls if possible)
 command! -bang -nargs=* GRg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+  \ call s:fzf_rg(<q-args>, <bang>0, fnamemodify(finddir('.git', '.;'), ':p:h:h'))
 
+" 3. Current Directory search
 command! -bang -nargs=* FRg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'dir': systemlist('pwd')[0]}), <bang>0)
-
+  \ call s:fzf_rg(<q-args>, <bang>0, getcwd())
