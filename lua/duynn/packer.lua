@@ -35,7 +35,9 @@ return require('packer').startup(function(use)
   use 'mattn/emmet-vim' -- <C-y>,
   use 'tpope/vim-surround'
   use 'echuraev/translate-shell.vim'
-  use 'junegunn/fzf.vim'
+  -- use 'junegunn/fzf.vim'
+  -- -- Post-install/update hook with call of vimscript function with argument
+  -- use { "junegunn/fzf", run = ":call fzf#install()" }
   use({
     'ibhagwan/fzf-lua',
     -- optional for icon support
@@ -86,9 +88,6 @@ return require('packer').startup(function(use)
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
   use('nvim-treesitter/playground')
-
-  -- Post-install/update hook with call of vimscript function with argument
-  use { "junegunn/fzf", run = ":call fzf#install()" }
 
   use {
     'stevearc/aerial.nvim',

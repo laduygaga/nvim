@@ -29,3 +29,13 @@ end, { desc = "Fzf Live Grep (Git Root)" })
 vim.keymap.set('n', '<leader><leader>s', function()
   fzf.live_grep({ cwd = vim.fn.getcwd() })
 end, { desc = "Fzf Live Grep (CWD)" })
+
+
+-- Search all files in CWD (What :Files used to do)
+vim.keymap.set('n', '<leader><leader>f', fzf.files, { desc = "Fzf Files" })
+
+-- Search only files tracked by Git (Very fast)
+vim.keymap.set('n', '<leader><leader>g', fzf.git_files, { desc = "Fzf Git Files" })
+
+-- Search recently opened files (OldFiles)
+vim.keymap.set('n', '<leader>fo', fzf.oldfiles, { desc = "Fzf Recent Files" })
