@@ -36,6 +36,15 @@ return require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use 'echuraev/translate-shell.vim'
   use 'junegunn/fzf.vim'
+  use({
+    'ibhagwan/fzf-lua',
+    -- optional for icon support
+    requires = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      -- calling setup enables the default configuration
+      require('fzf-lua').setup({})
+    end
+  })
   use 'ggreer/the_silver_searcher'
   use 'pamacs/vim-srt-sync'
   use 'rking/ag.vim'
