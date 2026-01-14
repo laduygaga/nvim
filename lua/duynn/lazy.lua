@@ -152,9 +152,6 @@ require("lazy").setup({
     "stevearc/aerial.nvim",
     cmd = "AerialToggle",
     keys = { { "<leader>a", "<cmd>AerialToggle<cr>", desc = "Aerial" } },
-    config = function()
-      require("aerial").setup()
-    end,
   },
   {
     "majutsushi/tagbar",
