@@ -1,6 +1,6 @@
 require("duynn.set")
 require("duynn.cmd")
 require("duynn.keymap")
-require("duynn.packer")
+require("duynn.lazy")
 require("duynn.toggle")
-require("duynn.autocmd")
+require("duynn.autocmd_new")
