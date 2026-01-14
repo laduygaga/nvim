@@ -51,7 +51,6 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
     build = ":TSUpdate",
-    dependencies = { "nvim-treesitter/playground" },
   },
 
   -- Fuzzy Finder
