@@ -1,7 +1,41 @@
-local ok, configs = pcall(require, 'nvim-treesitter.configs')
-if not ok then return end
+-- Enable treesitter highlighting
+vim.api.nvim_create_autocmd({"BufReadPost", "BufNewFile"}, {
+  pattern = "*",
+  callback = function(args)
+    local buf = args.buf
+    local ft = vim.bo[buf].filetype
+    
+    -- Skip if no filetype or special buffers
+    if ft == "" or vim.bo[buf].buftype ~= "" then
+      return
+    end
+    
+    -- Check for large files
+    if vim.fn.line("$") > 10000 then
+      return
+    end
+    
+    -- Check for long lines in html/js
+    if ft == "html" or ft == "javascript" then
+      for i = 1, vim.fn.line("$") do
+        local line = vim.fn.getline(i)
+        if #line > 200 then
+          return
+        end
+      end
+    end
+    
+    -- Try to start treesitter highlighting
+    local ok = pcall(vim.treesitter.start, buf, ft)
+    if not ok then
+      -- Fallback to syntax highlighting
+      vim.bo[buf].syntax = "on"
+    end
+  end,
+})
 
-configs.setup {
+-- Legacy config (kept for compatibility)
+require('nvim-treesitter').setup {
   highlight = {
     enable = true,
 	-- disable for large files or html

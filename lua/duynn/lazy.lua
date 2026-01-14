@@ -49,7 +49,8 @@ require("lazy").setup({
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
+    lazy = false,
+    priority = 100,
     build = ":TSUpdate",
   },
 
