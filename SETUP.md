@@ -29,8 +29,17 @@ nvim
 
 1. **lazy.nvim** bootstraps itself (auto-clones from GitHub)
 2. **All plugins** are automatically installed on first launch
-3. **Treesitter parsers** auto-install for common languages (lua, vim, python, js, etc.)
+3. **Treesitter parsers** auto-install for ALL languages in `ensure_installed` list
+   - This happens in the background (takes 1-2 minutes)
+   - You'll see "Installing treesitter parsers..." notification
+   - Parsers install asynchronously, so UI remains responsive
 4. **Mason** can be run with `:Mason` to install LSP servers
+
+**Note:** If you open a file before parsers finish installing, you can manually install:
+```vim
+:lua require('nvim-treesitter').install('go')
+# Or wait a minute and restart nvim - parsers will be ready
+```
 
 ### 4. Optional - Install additional treesitter parsers:
 ```vim
