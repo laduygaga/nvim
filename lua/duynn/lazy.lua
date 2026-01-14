@@ -61,6 +61,9 @@ require("lazy").setup({
       { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find files" },
       { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "Live grep" },
       { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
+      { "gd", "<cmd>FzfLua lsp_definitions<cr>", desc = "LSP Definitions" },
+      { "gi", "<cmd>FzfLua lsp_implementations<cr>", desc = "LSP Implementations" },
+      { "gh", "<cmd>FzfLua lsp_references<cr>", desc = "LSP References" },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()

@@ -8,15 +8,15 @@ local on_attach = function(_, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-  vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', { desc = 'LSP Definition' })
+  vim.keymap.set('n', 'gd', '<cmd>FzfLua lsp_definitions<CR>', { desc = 'LSP Definition' })
   vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
-  vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', { desc = 'LSP Implementation' })
+  vim.keymap.set('n', 'gi', '<cmd>FzfLua lsp_implementations<CR>', { desc = 'LSP Implementation' })
   vim.keymap.set('n', '<leader><leader>ca', vim.lsp.buf.code_action, opts)
-  vim.keymap.set('n', '<leader><leader>td', '<cmd>Telescope diagnostics<CR>', opts)
+  vim.keymap.set('n', '<leader><leader>td', '<cmd>FzfLua diagnostics_document<CR>', opts)
   -- lsp rename
   vim.keymap.set('n', '<leader><leader>r', vim.lsp.buf.rename, opts)
   -- lsp finder
-  vim.keymap.set('n', 'gh', '<cmd>Telescope lsp_references<CR>', opts)
+  vim.keymap.set('n', 'gh', '<cmd>FzfLua lsp_references<CR>', opts)
   vim.keymap.set('n', ']e', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', '[e', vim.diagnostic.goto_prev, opts)
 end
