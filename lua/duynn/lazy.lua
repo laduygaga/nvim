@@ -27,7 +27,12 @@ require("lazy").setup({
   {
     "mason-org/mason.nvim",
     cmd = "Mason",
-    build = ":MasonUpdate",
+    build = function()
+      pcall(vim.cmd, "MasonUpdate")
+    end,
+    config = function()
+      require("mason").setup()
+    end,
   },
   {
     "hrsh7th/nvim-cmp",
