@@ -38,18 +38,7 @@ vim.api.nvim_create_autocmd({"BufReadPost", "BufNewFile"}, {
 require('nvim-treesitter').setup {
   highlight = {
     enable = true,
-	-- disable for large files or html
-	disable = function()
-		if vim.bo.filetype == 'html' or vim.bo.filetype == 'javascript' then
-			for i = 1, vim.fn.line("$") do
-				local line = vim.fn.getline(i)
-				if #line > 200 then
-					return true
-				end
-			end
-		end
-		return vim.fn.line("$") > 10000
-	end,
+	disable = {},  -- Handled by autocmd above
   },
   indent = {
     enable = false,
@@ -91,7 +80,26 @@ require('nvim-treesitter').setup {
 	"query",
 	"diff",
   },
+  auto_install = true,  -- Auto-install parsers on new machine
 }
+
+-- Auto-install parsers on first setup
+local function ensure_parsers_installed()
+  local installed = require('nvim-treesitter').get_installed()
+  if #installed == 0 then
+    vim.notify("Installing treesitter parsers for first time...", vim.log.levels.INFO)
+    -- Install essential parsers
+    local essential = {'lua', 'vim', 'vimdoc', 'query', 'python', 'javascript', 'typescript', 'bash', 'json', 'markdown'}
+    for _, lang in ipairs(essential) do
+      vim.schedule(function()
+        require('nvim-treesitter').install(lang)
+      end)
+    end
+  end
+end
+
+-- Run on startup
+vim.defer_fn(ensure_parsers_installed, 100)
 
 --local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 --parser_config.tsx.used_by = { "javascript", "typescript.tsx" }
