@@ -150,8 +150,11 @@ require("lazy").setup({
   },
   {
     "stevearc/aerial.nvim",
-    cmd = "AerialToggle",
+    cmd = { "AerialToggle", "AerialOpen", "AerialClose", "AerialInfo" },
     keys = { { "<leader>a", "<cmd>AerialToggle<cr>", desc = "Aerial" } },
+    config = function()
+      require("duynn.config.aerial")
+    end,
   },
   {
     "majutsushi/tagbar",
