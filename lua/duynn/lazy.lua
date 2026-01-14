@@ -72,6 +72,7 @@ require("lazy").setup({
   -- Git
   {
     "tpope/vim-fugitive",
+    event = { "BufReadPost", "BufNewFile" },
     cmd = { "Git", "G", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse", "GRemove", "GRename", "Glgrep", "Gedit" },
   },
   { "tpope/vim-rhubarb", lazy = true },
