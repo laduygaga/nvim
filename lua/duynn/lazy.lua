@@ -176,7 +176,7 @@ require("lazy").setup({
     "voldikss/vim-floaterm",
     cmd = { "FloatermNew", "FloatermToggle" },
     keys = {
-      { "<leader>t", "<cmd>FloatermToggle<cr>", desc = "Toggle terminal" },
+      -- { "<leader>t", "<cmd>FloatermToggle<cr>", desc = "Toggle terminal" },
     },
   },
 
