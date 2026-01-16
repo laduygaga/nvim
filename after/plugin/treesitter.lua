@@ -10,8 +10,9 @@ vim.api.nvim_create_autocmd({"BufReadPost", "BufNewFile"}, {
       return
     end
     
-    -- Check for large files
-    if vim.fn.line("$") > 10000 then
+    -- Check for large files (but allow protobuf files)
+    local is_protobuf = vim.fn.expand('%'):match("%.pb%.go$") ~= nil
+    if vim.fn.line("$") > 10000 and not is_protobuf then
       return
     end
     
