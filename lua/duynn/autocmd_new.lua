@@ -42,17 +42,21 @@ api.nvim_create_autocmd("BufReadPre", {
 		local is_protobuf = file:match("%.pb%.go$") ~= nil
 		
 		if (size > large_file or size == -2) and not is_protobuf then
-			vim.opt_local.eventignore:append("FileType")
-			vim.opt_local.number = false
-			vim.opt_local.relativenumber = false
-			vim.opt_local.swapfile = false
-			vim.opt_local.bufhidden = "unload"
-			vim.opt_local.buftype = "nowrite"
-			vim.opt_local.undolevels = -1
+			-- Schedule to run after other BufReadPre events (like LSP loading)
+			vim.schedule(function()
+				vim.opt_local.eventignore:append("FileType")
+				vim.opt_local.number = false
+				vim.opt_local.relativenumber = false
+				vim.opt_local.swapfile = false
+				vim.opt_local.bufhidden = "unload"
+				vim.opt_local.buftype = "nowrite"
+				vim.opt_local.undolevels = -1
+			end)
 		elseif is_protobuf then
 			-- For protobuf files: keep LSP but disable heavy features
 			vim.opt_local.swapfile = false
 			vim.opt_local.undolevels = 100  -- Limited undo
+			-- Don't block FileType event so LSP can attach
 		end
 	end,
 })

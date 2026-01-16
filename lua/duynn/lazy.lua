@@ -23,6 +23,7 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "folke/lsp-colors.nvim" },
+    priority = 100, -- Load before other BufReadPre handlers
   },
   {
     "mason-org/mason.nvim",
