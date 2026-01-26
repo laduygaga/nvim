@@ -13,6 +13,17 @@ require('fzf-lua').setup({
       horizontal = 'right:60%',    -- preview on left, list on right
     },
   },
+  previewers = {
+    builtin = {
+      -- This allows the builtin previewer to handle images
+      extensions = {
+        ["png"] = { "ueberzug", "{file}" },
+        ["jpg"] = { "ueberzug", "{file}" },
+        ["jpeg"] = { "ueberzug", "{file}" },
+        ["gif"] = { "ueberzug", "{file}" },
+      },
+    },
+  },
   -- 2. Internal FZF behavior (Input at bottom)
   fzf_opts = {
     ['--layout'] = 'default', -- results grow UP from the bottom input
