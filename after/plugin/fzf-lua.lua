@@ -1,4 +1,6 @@
 local fzf = require('fzf-lua')
+local actions = require("fzf-lua").actions
+local path = require("fzf-lua.path")
 
 require('fzf-lua').setup({
   -- 1. Window layout (Floating)
@@ -32,6 +34,32 @@ require('fzf-lua').setup({
     -- 1. Added --no-ignore to see .env even if it's in .gitignore
     -- 2. Kept --hidden to see files starting with a dot
     cmd = "fd --type f --hidden --no-ignore --follow --exclude .git",
+    actions = {
+      ["default"] = actions.file_edit,
+      ["ctrl-y"] = function(selected, opts)
+        -- path.entry_to_file strips icons and handles multi-selection
+        local entry = path.entry_to_file(selected[1], opts)
+        -- Copy the clean path to the + register
+        vim.fn.setreg("+", entry.path)
+        print("Copied clean path: " .. entry.path)
+      end,
+      -- smart open file
+      ["ctrl-o"] = function(selected, opts)
+        local entry = path.entry_to_file(selected[1], opts)
+        local file_path = entry.path
+        -- Optional: Fallback to system default for non-images
+        -- Use "open" for macOS or "xdg-open" for Linux
+        vim.fn.jobstart({ "xdg-open", file_path },
+          {
+            detach = true,
+            stdout_buffered = true,
+            on_stdout = function() end,
+            on_stderr = function() end,
+          }
+        )
+        print("Opening with system default: " .. file_path)
+      end,
+    }
   }
 })
 -- Alternative to GRg (Search from Git Root)
