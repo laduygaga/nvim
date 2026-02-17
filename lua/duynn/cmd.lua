@@ -17,7 +17,7 @@ vim.cmd[[hi Search term=none cterm=none ctermfg=Black ctermbg=LightCyan]]
 -- floaterm
 vim.cmd[[highlight FloatermBorder guibg=orange guifg=cyan]]
 vim.cmd[[let g:floaterm_width=0.9]]
-
+vim.cmd[[let g:floaterm_height=0.8]]
 
 -- Ag
 vim.cmd[[let g:ag_working_path_mode="r"]]
