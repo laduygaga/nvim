@@ -4,10 +4,6 @@ vim.opt.statusline = ''
 vim.opt.title = true
 vim.opt.titlestring = '%f - %w'
 
---  enable 256 colors
--- vim.opt.t_Co = "256"
--- vim.opt.t_ut = nil
-
 -- windows
 -- vim.opt.winheight = 25
 -- vim.opt.winwidth = 80

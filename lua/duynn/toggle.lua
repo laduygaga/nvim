@@ -75,3 +75,14 @@ function ToggleExpandtab()
 		is_expandtab = 1
 	end
 end
+
+
+function ToggleTermguicolors()
+  if vim.o.termguicolors then
+    vim.o.termguicolors = false
+    print("termguicolors: OFF (256 Colors)")
+  else
+    vim.o.termguicolors = true
+    print("termguicolors: ON (True Color)")
+  end
+end

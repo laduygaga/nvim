@@ -105,3 +105,6 @@ nnoremap("<C-k>", "<cmd>CopilotChatToggle<CR>", { silent = true })
 
 -- fold
 nnoremap("<space>", "za", { silent = true })
+
+-- toggle termguicolors
+nnoremap("<F11>", "<cmd>lua ToggleTermguicolors()<CR>", { silent = true })
