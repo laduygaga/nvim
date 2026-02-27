@@ -48,3 +48,14 @@ vim.opt.incsearch = true
 vim.opt.nrformats:remove{"octal"}
 vim.opt.cursorline = true
 vim.opt.wrap = true
+
+vim.keymap.set('n', '<leader>dt', function()
+    local timestamp = vim.fn.expand('<cword>')
+    -- Basic check to see if the word is a number
+    if tonumber(timestamp) then
+        local date = os.date('%Y-%m-%d %H:%M:%S', timestamp)
+        print("Date: " .. date)
+    else
+        print("Error: Word under cursor is not a valid timestamp.")
+    end
+end, { desc = "Preview timestamp as date" })
