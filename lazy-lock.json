@@ -12,6 +12,7 @@
   "competitive-companion": { "branch": "master", "commit": "4bf4fa04f51dc9ae6868534b1dabd5b3bfc300b7" },
   "copilot.vim": { "branch": "release", "commit": "a12fd5672110c8aa7e3c8419e28c96943ca179be" },
   "cphelper.nvim": { "branch": "main", "commit": "fbc770e5498738565a521a153f68a1688280d427" },
+  "csvview.nvim": { "branch": "main", "commit": "7022e18a0fbae9aecf99a3ba02b2a541edc2b8a1" },
   "emmet-vim": { "branch": "master", "commit": "e98397144982d1e75b20d94d55a82de3ec8f648d" },
   "fzf-lua": { "branch": "main", "commit": "1749fedca3a0efdd47918f8b588f7c7abb4e5bd6" },
   "git-messenger.vim": { "branch": "master", "commit": "fd124457378a295a5d1036af4954b35d6b807385" },

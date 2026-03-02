@@ -49,6 +49,9 @@ vim.opt.nrformats:remove{"octal"}
 vim.opt.cursorline = true
 vim.opt.wrap = true
 
+-- encoding
+vim.opt.fileencodings = "ucs-bom,utf-8,gbk,gb18030,big5,cp936,latin1"
+
 vim.keymap.set('n', '<leader>dt', function()
     local timestamp = vim.fn.expand('<cword>')
     -- Basic check to see if the word is a number
