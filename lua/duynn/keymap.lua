@@ -76,7 +76,7 @@ vnoremap("=", ":DoubleUnderline<CR>")
 
 nnoremap("<leader>g", "<cmd>Ag <C-r>=expand('<cword>')<CR><CR>", { silent = true })
 nnoremap("<leader>s", "<cmd>AgFromSearch<CR>", { silent = true })
-nnoremap("<leader>e", "<cmd>lua ToggleVExplorer()<CR>", { silent = true })
+nnoremap("<leader>e", "<cmd>CsvViewToggle<CR>", { silent = true })
 nnoremap("<leader>m", "<cmd>lua ToggleMouse()<CR>", { silent = true })
 nnoremap("<leader>w", "<cmd>lua ToggleWrap()<CR>", { silent = true })
 -- nnoremap("<C-e>", "<cmd>TagbarToggle<CR>", { silent = true })
@@ -93,8 +93,8 @@ tnoremap("<C-]>", "<C-\\><C-n>", { silent = true })
 -- nnoremap("<leader><space>", '<cmd>lua require("sg.telescope").fuzzy_search_results()<CR>', { silent = true })
 
 -- scroll horizontally
-nnoremap("<C-l>", "20zl", { silent = true })
-nnoremap("<C-h>", "20zh", { silent = true })
+nnoremap("<S-l>", "30zl", { silent = true })
+nnoremap("<S-h>", "30zh", { silent = true })
 
 -- cycle through breakpoints
 nnoremap("]b", "<cmd> lua require('goto-breakpoints').next()<CR>", {silent=true})

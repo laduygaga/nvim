@@ -234,6 +234,15 @@ require("lazy").setup({
     ---@module "csvview"
     ---@type CsvView.Options
     opts = {
+        view = {
+        -- Set to true for auto-detection (default)
+        -- Or set to a number (e.g., 1) to force a specific line
+        header_lnum = 5,
+        sticky_header = {
+          enabled = true,
+          separator = "─", -- Character used for the line below the sticky header
+        },
+      },
       parser = { comments = { "#", "//" } },
       keymaps = {
         -- Text objects for selecting fields

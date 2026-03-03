@@ -18,10 +18,11 @@ vim.opt.foldlevel= 99
 vim.opt.number = true
 vim.opt.relativenumber = true
 
--- sane text files
+-- encoding
 vim.opt.fileformat = 'unix'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
+vim.opt.fileencodings = "ucs-bom,utf-8,gbk,gb18030,big5,cp936,latin1"
 
 -- sane editing
 -- setlocal noexpandtab
@@ -48,9 +49,6 @@ vim.opt.incsearch = true
 vim.opt.nrformats:remove{"octal"}
 vim.opt.cursorline = true
 vim.opt.wrap = true
-
--- encoding
-vim.opt.fileencodings = "ucs-bom,utf-8,gbk,gb18030,big5,cp936,latin1"
 
 vim.keymap.set('n', '<leader>dt', function()
     local timestamp = vim.fn.expand('<cword>')
