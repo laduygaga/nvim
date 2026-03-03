@@ -230,7 +230,8 @@ require("lazy").setup({
   },
   { "folke/lsp-colors.nvim", lazy = true },
   {
-    "hat0uma/csvview.nvim",
+    "laduygaga/csvview.nvim",
+    branch = "fix/multi-line-sticky-header",
     ---@module "csvview"
     ---@type CsvView.Options
     opts = {
