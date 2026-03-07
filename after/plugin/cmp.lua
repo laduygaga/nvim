@@ -4,6 +4,7 @@ local source_mapping = {
 	buffer = "[Buffer]", keyword_length = 5,
 	nvim_lsp = "[LSP]",
 	nvim_lua = "[Lua]",
+	lazydev = "[LazyDev]",
 	path = "[Path]",
 }
 
@@ -32,7 +33,7 @@ cmp.setup({
 	},
 
 	sources = {
-
+		{ name = "lazydev", group_index = 0 },
 		{ name = "nvim_lsp" },
 		{ name = 'orgmode' },
 

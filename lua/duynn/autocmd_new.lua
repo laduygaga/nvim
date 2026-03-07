@@ -14,12 +14,13 @@ api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- Prevent loss of clipboard when leaving buffer
-api.nvim_create_autocmd("BufLeave", {
-	pattern = "*",
-	callback = function()
-		vim.fn.system("xsel -ib", vim.fn.getreg('+'))
-	end,
-})
+-- Commented out: Running xsel on every BufLeave is very CPU intensive and slow
+-- api.nvim_create_autocmd("BufLeave", {
+-- 	pattern = "*",
+-- 	callback = function()
+-- 		vim.fn.system("xsel -ib", vim.fn.getreg('+'))
+-- 	end,
+-- })
 
 -- Quickfix buffer mapping
 api.nvim_create_autocmd("BufReadPost", {

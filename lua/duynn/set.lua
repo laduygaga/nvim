@@ -43,7 +43,7 @@ vim.opt.scrolloff = 999
 vim.opt.cmdheight = 2
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
-vim.opt.path:append({ '**' })
+-- vim.opt.path:append({ '**' })
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.nrformats:remove{"octal"}

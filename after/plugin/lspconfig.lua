@@ -70,7 +70,24 @@ vim.lsp.enable('gopls')
 -- Lua
 vim.lsp.config('lua_ls', {
   on_attach = on_attach,
-  settings = { Lua = { diagnostics = { globals = {'vim'}, }, }, },
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      workspace = {
+        checkThirdParty = false,
+        library = { vim.env.VIMRUNTIME },
+        -- Performance tweaks
+        maxPreload = 1000,
+        preloadFileSize = 150,
+      },
+      completion = { callSnippet = 'Replace' },
+      telemetry = { enable = false },
+      diagnostics = {
+        workspaceDelay = 3000, -- Delay workspace diagnostics to reduce CPU
+      },
+    },
+  },
 })
 vim.lsp.enable('lua_ls')
 

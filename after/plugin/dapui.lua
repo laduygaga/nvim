@@ -14,9 +14,9 @@ require("dapui").setup({
     -- {
     --   elements = {
     --   -- Elements can be strings or table with id and size keys.
-	-- 	{id = "watches", size = 0.25},
-	-- 	{id = "breakpoints", size = 0.25},
-	-- 	{id = "stacks", size = 0.25},
+    -- 		{id = "watches", size = 0.25},
+    -- 		{id = "breakpoints", size = 0.25},
+    -- 		{id = "stacks", size = 0.25},
     --     { id = "scopes", size = 0.25},
     --   },
     --   size = 80,
@@ -74,4 +74,3 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
-
