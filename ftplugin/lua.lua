@@ -56,3 +56,6 @@ vim.keymap.set('n', '<F8>', function() require('dap').step_over() end, { buffer 
 vim.keymap.set('n', '<F9>', function() require('dap').step_into() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<F10>', function() require('dap').step_out() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>du', function() require("dapui").toggle() end, { buffer = true, silent = true })
+
+-- Visual mode eval - use old vnoremap style for proper behavior
+vim.cmd([[vnoremap <buffer> <silent> <CR> :lua require("dapui").eval()<CR>]])
