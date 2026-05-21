@@ -28,7 +28,7 @@ local tnoremap = M.tnoremap
 inoremap("jk", "<ESC>")
 -- this make i can use `p` to paste from system clipboard, but issue is 
 -- that conflict with using `p` in normal mode to paste from unnamed register
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = "unnamed"
 nnoremap("'", "`")
 -- git-message
 nnoremap("<CR>", "<cmd>GitMessenger<CR>")
