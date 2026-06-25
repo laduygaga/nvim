@@ -81,3 +81,42 @@ function ToggleTermguicolors()
     print("termguicolors: ON (True Color)")
   end
 end
+
+
+function ToggleJSON()
+  -- CRITICAL: Exit visual mode to force Neovim to update the '< and '> marks
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, false, true), "x", true)
+
+  -- Now get the correct start and end rows of your visual selection
+  local start_line = vim.fn.line("'<")
+  local end_line = vim.fn.line("'>")
+
+  -- Read the selected lines from the buffer
+  local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+  local input_text = table.concat(lines, "\n")
+
+  -- Check if the total selection is a single line (already minified)
+  local is_minified = (start_line == end_line) and string.match(input_text, "^%s*[%[{].*[%]}]%s*$")
+
+  -- Determine the correct jq arguments
+  local jq_cmd = is_minified and "jq ." or "jq -c ."
+
+  -- Run jq on the selected text
+  local output = vim.fn.system(jq_cmd, input_text)
+
+  if vim.v.shell_error == 0 then
+    -- Clean up trailing whitespace/newlines from shell output
+    output = string.gsub(output, "%s*$", "")
+    
+    -- Split the output back into an array of lines (needed for pretty-printed JSON)
+    local output_lines = {}
+    for s in string.gmatch(output, "[^\r\n]+") do
+      table.insert(output_lines, s)
+    end
+
+    -- Replace the selected range with the formatted result
+    vim.api.nvim_buf_set_lines(0, start_line - 1, end_line, false, output_lines)
+  else
+    print("jq Error: " .. output)
+  end
+end

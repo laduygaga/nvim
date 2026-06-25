@@ -108,3 +108,6 @@ nnoremap("<space>", "za", { silent = true })
 
 -- toggle termguicolors
 nnoremap("<F11>", "<cmd>lua ToggleTermguicolors()<CR>", { silent = true })
+
+-- toggle json
+vnoremap("<leader>f", "<cmd>lua ToggleJSON()<CR>", { silent = true })
