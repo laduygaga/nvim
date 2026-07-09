@@ -20,3 +20,17 @@ vim.keymap.set('n', '<F9>', function() require('dap').step_into() end, { buffer 
 vim.keymap.set('n', '<F10>', function() require('dap').step_out() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>dr', function() require('dap').repl.toggle() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>du', function() require("dapui").toggle() end, { buffer = true, silent = true })
+
+-- LSP configuration for Go
+vim.lsp.config('gopls', {
+  settings = {
+    gopls = {
+      analyses = {
+        staticcheck = false, -- Optimization
+        unusedparams = true,
+      },
+      staticcheck = false, -- Optimization
+    },
+  },
+})
+vim.lsp.enable('gopls')

@@ -21,3 +21,7 @@ vim.keymap.set('n', '<leader>dr', function() require('dap').repl.toggle() end, {
 vim.keymap.set('n', '<leader>du', function() require("dapui").toggle() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>df', function() require('dap-python').test_method() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>do', function() require('dap-python').test_class() end, { buffer = true, silent = true })
+
+-- LSP configuration for Python
+vim.lsp.config('pyright', {})
+vim.lsp.enable('pyright')

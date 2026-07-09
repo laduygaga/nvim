@@ -72,85 +72,23 @@ require("lazy").setup({
       local treesitter = require('nvim-treesitter')
       treesitter.setup({
         ensure_installed = {
-          "tsx", "toml", "fish", "php", "json", "yaml", "swift", "html", "scss",
-          "python", "c", "cpp", "go", "bash", "lua", "rust", "typescript", "javascript",
-          "vue", "proto", "regex", "latex", "markdown", "perl", "haskell", "ruby",
-          "graphql", "cmake", "vim", "dockerfile", "dart", "vimdoc", "query", "diff",
+          "go", "python", "lua", "yaml", "json", "cmake", "toml", "bash", "html",
         },
         sync_install = false,
         auto_install = true,
         highlight = {
           enable = true,
-          disable = function(lang, buf)
-            local file = vim.api.nvim_buf_get_name(buf)
-            if file:match("%.pb%.go$") then
-              return false
-            end
-            if vim.api.nvim_buf_line_count(buf) > 10000 then
-              return true
-            end
-            if lang == "html" or lang == "javascript" then
-              local lines = vim.api.nvim_buf_get_lines(buf, 0, 100, false)
-              for _, line in ipairs(lines) do
-                if #line > 300 then
-                  return true
-                end
-              end
-            end
-            return false
-          end,
           additional_vim_regex_highlighting = false,
         },
         indent = {
-          enable = false
+          enable = true
         },
       })
       
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "*",
-        callback = function(args)
-          local ft = vim.bo[args.buf].filetype
-          if ft == "" or ft == "checkhealth" or ft:match("fzf") or ft:match("Telescope") then return end
-          
-          pcall(function()
-            local ts = require("nvim-treesitter")
-            local installed = ts.get_installed()
-            local is_installed = false
-            for _, p in ipairs(installed) do
-              if p == ft then is_installed = true break end
-            end
-            
-            if not is_installed then
-              local parsers = require("nvim-treesitter.parsers")
-              if parsers[ft] then
-                -- Use async TSInstall to avoid hanging the UI
-                vim.notify("Installing treesitter parser for " .. ft .. "...")
-                vim.cmd("TSInstall " .. ft)
-                
-                -- Wait for install to finish then start highlighting
-                -- We check every 2 seconds for up to 20 seconds
-                local timer = vim.loop.new_timer()
-                local count = 0
-                timer:start(2000, 2000, vim.schedule_wrap(function()
-                  count = count + 1
-                  local currently_installed = ts.get_installed()
-                  local found = false
-                  for _, p in ipairs(currently_installed) do
-                    if p == ft then found = true break end
-                  end
-                  
-                  if found or count > 10 then
-                    pcall(vim.treesitter.start, args.buf, ft)
-                    timer:stop()
-                    timer:close()
-                  end
-                end))
-              end
-            else
-              -- Force start highlighting for already installed languages
-              pcall(vim.treesitter.start, args.buf, ft)
-            end
-          end)
+      -- Enable treesitter for the current buffer
+      vim.api.nvim_create_autocmd("BufReadPost", {
+        callback = function()
+          pcall(vim.treesitter.start)
         end,
       })
     end,
@@ -232,18 +170,6 @@ require("lazy").setup({
     "github/copilot.vim",
     event = "InsertEnter",
   },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "main",
-    cmd = { "CopilotChat", "CopilotChatOpen", "CopilotChatToggle" },
-    dependencies = {
-      { "github/copilot.vim" },
-      { "nvim-lua/plenary.nvim" },
-    },
-    config = function()
-      require("CopilotChat").setup({})
-    end,
-  },
 
   -- UI & Navigation
   {
@@ -261,11 +187,6 @@ require("lazy").setup({
     config = function()
       require("duynn.config.aerial")
     end,
-  },
-  {
-    "majutsushi/tagbar",
-    cmd = "TagbarToggle",
-    keys = { { "<F8>", "<cmd>TagbarToggle<cr>", desc = "Tagbar" } },
   },
 
   -- Terminal
@@ -310,8 +231,6 @@ require("lazy").setup({
   -- Languages
   { "TovarishFin/vim-solidity", ft = "solidity" },
   { "ggreer/the_silver_searcher", lazy = true },
-  { "rking/ag.vim", cmd = "Ag" },
-  { "echuraev/translate-shell.vim", cmd = "Trans" },
   { "pamacs/vim-srt-sync", ft = "srt" },
 
   -- Competitive Programming
