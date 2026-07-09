@@ -2,7 +2,7 @@
 
 -- Use an on_attach function to only map the following keys 
 -- after the language server attaches to the current buffer
-local on_attach = function(_, bufnr)
+_G.on_attach = function(_, bufnr)
   local opts = { noremap=true, silent=true, buffer = bufnr }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions

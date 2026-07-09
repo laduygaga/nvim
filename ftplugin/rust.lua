@@ -3,6 +3,7 @@ vim.keymap.set('n', '<leader>2', ':w<CR>:!clear<CR>:!cargo run<CR>', { buffer = 
 
 -- LSP configuration for Rust
 vim.lsp.config('rust_analyzer', {
+    on_attach = _G.on_attach,
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
     settings = {
         ["rust-analyzer"] = {

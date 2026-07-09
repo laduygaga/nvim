@@ -23,6 +23,7 @@ vim.keymap.set('n', '<leader>du', function() require("dapui").toggle() end, { bu
 
 -- LSP configuration for Go
 vim.lsp.config('gopls', {
+  on_attach = _G.on_attach,
   settings = {
     gopls = {
       analyses = {

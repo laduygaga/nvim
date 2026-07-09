@@ -23,5 +23,5 @@ vim.keymap.set('n', '<leader>df', function() require('dap-python').test_method()
 vim.keymap.set('n', '<leader>do', function() require('dap-python').test_class() end, { buffer = true, silent = true })
 
 -- LSP configuration for Python
-vim.lsp.config('pyright', {})
+vim.lsp.config('pyright', { on_attach = _G.on_attach })
 vim.lsp.enable('pyright')

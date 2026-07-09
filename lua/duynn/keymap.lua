@@ -100,11 +100,13 @@ nnoremap("<S-h>", "30zh", { silent = true })
 nnoremap("]b", "<cmd> lua require('goto-breakpoints').next()<CR>", {silent=true})
 nnoremap("[b", "<cmd> lua require('goto-breakpoints').prev()<CR>", {silent=true})
 
+nnoremap("<leader><leader>td", "<cmd>FzfLua diagnostics_document<CR>", { silent = true })
+
 -- copilot chat
 nnoremap("<C-k>", "<cmd>CopilotChatToggle<CR>", { silent = true })
 
 -- fold
-nnoremap("<space>", "za", { silent = true })
+nnoremap("<leader>z", "za", { silent = true })
 
 -- toggle termguicolors
 nnoremap("<F11>", "<cmd>lua ToggleTermguicolors()<CR>", { silent = true })
