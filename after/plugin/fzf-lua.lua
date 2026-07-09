@@ -30,6 +30,10 @@ require('fzf-lua').setup({
   fzf_opts = {
     ['--layout'] = 'default', -- results grow UP from the bottom input
   },
+  grep = {
+    -- We append '--fixed-strings' (or '-F') to the default ripgrep options
+    rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --fixed-strings",
+  },
   files = {
     -- 1. Added --no-ignore to see .env even if it's in .gitignore
     -- 2. Kept --hidden to see files starting with a dot
