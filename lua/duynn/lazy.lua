@@ -50,6 +50,7 @@ require("lazy").setup({
     "saghen/blink.cmp",
     version = "1.*",
     event = "InsertEnter",
+    dependencies = { "L3MON4D3/LuaSnip" },
     opts = {
       keymap = {
         preset = "default",
