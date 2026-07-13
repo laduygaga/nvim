@@ -2,9 +2,15 @@
 vim.keymap.set('n', '<leader>2', ':w<CR>:!clear<CR>:!cargo run<CR>', { buffer = true, silent = true })
 
 -- LSP configuration for Rust
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local ok, blink = pcall(require, 'blink.cmp')
+if ok then
+  capabilities = blink.get_lsp_capabilities(capabilities)
+end
+
 vim.lsp.config('rust_analyzer', {
     on_attach = _G.on_attach,
-    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    capabilities = capabilities,
     settings = {
         ["rust-analyzer"] = {
             cargo = { loadOutDirsFromCheck = true, allFeatures = false },

@@ -45,21 +45,76 @@ require("lazy").setup({
       require("mason").setup()
     end,
   },
+  -- Completion: blink.cmp (replaces hrsh7th/nvim-cmp)
   {
-    "hrsh7th/nvim-cmp",
+    "saghen/blink.cmp",
+    version = "1.*",
     event = "InsertEnter",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "saadparwaiz1/cmp_luasnip",
+    opts = {
+      keymap = {
+        preset = "default",
+        ["<CR>"] = { "accept", "fallback" },
+        ["<C-Space>"] = { "show" },
+        ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+      },
+      completion = {
+        documentation = { auto_show = true },
+        menu = {
+          draw = {
+            columns = {
+              { "label", "label_description", gap = 1 },
+              { "source_name", gap = 1 },
+              { "kind_icon", "kind" },
+            },
+            components = {
+              source_name = {
+                text = function(ctx)
+                  return "[" .. ctx.source_name .. "]"
+                end,
+                highlight = "BlinkCmpSource",
+              },
+            },
+          },
+        },
+      },
+      signature = { enabled = true },
+      snippets = { preset = "luasnip" },
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+        per_filetype = {
+          lua = { inherit_defaults = true, "lazydev" },
+          org = { inherit_defaults = true, "orgmode" },
+        },
+        providers = {
+          lsp = { name = "LSP", module = "blink.cmp.sources.lsp" },
+          path = { name = "Path", module = "blink.cmp.sources.path" },
+          buffer = { name = "Buffer", module = "blink.cmp.sources.buffer" },
+          snippets = { name = "LuaSnip", module = "blink.cmp.sources.snippets" },
+          lazydev = {
+            name = "Lua",
+            module = "lazydev.integrations.blink",
+            score_offset = 100,
+          },
+          orgmode = {
+            name = "Orgmode",
+            module = "blink.compat.source",
+            -- orgmode registers its cmp source as "orgmode"
+            opts = { cmp_name = "orgmode" },
+          },
+        },
+      },
     },
   },
+  -- Provides a `cmp` shim so nvim-cmp-only sources (e.g. orgmode) register
+  -- with blink. Loaded explicitly at startup in lua/duynn/lazy.lua (right
+  -- after lazy.setup) so the shim is on the rtp before any file opens and
+  -- orgmode's cmp source can call require('cmp'). Do NOT make this a
+  -- dependency of blink.cmp: it would inherit InsertEnter and load too late.
   {
-    "L3MON4D3/LuaSnip",
-    event = "InsertEnter",
-    build = "make install_jsregexp",
+    "saghen/blink.compat",
+    version = "2.*",
+    opts = {},
   },
 
   -- Treesitter
@@ -212,15 +267,6 @@ require("lazy").setup({
   },
   { "mattn/emmet-vim", ft = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact" } },
 
-  -- Orgmode
-  {
-    "nvim-orgmode/orgmode",
-    ft = "org",
-    config = function()
-      require("orgmode").setup({})
-    end,
-  },
-
   -- Markdown
   {
     "iamcco/markdown-preview.nvim",
@@ -293,3 +339,9 @@ require("lazy").setup({
     },
   },
 })
+
+-- Load blink.compat at startup so its `cmp` shim is on the rtp before any
+-- file opens. nvim-cmp-only sources (e.g. orgmode) call require('cmp')
+-- during their own setup, which runs at BufRead (before InsertEnter), so the
+-- shim must already be available here or those sources silently fail to register.
+pcall(require, "blink.compat")
