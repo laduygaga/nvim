@@ -23,14 +23,32 @@ vim.keymap.set('n', '<leader>du', function() require("dapui").toggle() end, { bu
 
 -- LSP configuration for Go
 vim.lsp.config('gopls', {
+  cmd = { 'gopls' },
+  filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+  root_dir = function(bufnr, on_dir)
+    on_dir(vim.fs.root(vim.api.nvim_buf_get_name(bufnr), { 'go.work', 'go.mod', '.git' }))
+  end,
+  single_file_support = true,
   on_attach = _G.on_attach,
+  flags = { debounce_text_changes = 200 },
   settings = {
     gopls = {
       analyses = {
         staticcheck = false, -- Optimization
-        unusedparams = true,
+        unusedparams = false, -- costly per keystroke on large codebases
+        nilness = false,
+        shadow = false,
+        unusedwrite = false,
+        unreachable = false,
       },
       staticcheck = false, -- Optimization
+      directoryFilters = {
+        '-**/vendor',
+        '-**/testdata',
+        '-**/node_modules',
+      },
+      -- set false only if you open a subdir of a big module (reduces workspace scope)
+      expandWorkspaceToModule = false,
     },
   },
 })
