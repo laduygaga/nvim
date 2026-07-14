@@ -18,13 +18,6 @@ require("lazy").setup({
   { "nvim-lua/popup.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
-  -- LSP & Completion
-  {
-    "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "folke/lsp-colors.nvim" },
-    priority = 100, -- Load before other BufReadPre handlers
-  },
   {
     "folke/lazydev.nvim",
     ft = "lua",
