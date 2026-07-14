@@ -17,8 +17,8 @@ _G.on_attach = function(_, bufnr)
   vim.keymap.set('n', '<leader><leader>r', vim.lsp.buf.rename, opts)
   -- lsp finder
   vim.keymap.set('n', 'gh', '<cmd>FzfLua lsp_references<CR>', opts)
-  vim.keymap.set('n', ']e', vim.diagnostic.goto_next, opts)
-  vim.keymap.set('n', '[e', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', ']e', function() vim.diagnostic.jump({ count = 1 }) end, opts)
+  vim.keymap.set('n', '[e', function() vim.diagnostic.jump({ count = -1 }) end, opts)
 end
 
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1e1e2e' })
@@ -42,5 +42,11 @@ vim.diagnostic.config({
     format = function(diagnostic)
       return string.format("%s (%s)", diagnostic.message, diagnostic.source)
     end,
-  }
+  },
+  -- open a float on jump (replaces the deprecated goto_next/goto_prev float option)
+  jump = {
+    on_jump = function(_, bufnr)
+      vim.diagnostic.open_float({ bufnr = bufnr, scope = 'cursor', focus = false })
+    end,
+  },
 })
