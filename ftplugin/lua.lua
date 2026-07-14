@@ -59,3 +59,26 @@ vim.keymap.set('n', '<leader>du', function() require("dapui").toggle() end, { bu
 
 -- Visual mode eval - use old vnoremap style for proper behavior
 vim.cmd([[vnoremap <buffer> <silent> <CR> :lua require("dapui").eval()<CR>]])
+
+vim.lsp.config('lua_ls', {
+  cmd = { 'lua-language-server' },
+  filetypes = { 'lua' },
+  root_dir = function(bufnr, on_dir)
+    on_dir(vim.fs.root(vim.api.nvim_buf_get_name(bufnr),
+      { '.luarc.json', '.luarc.jsonc', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', 'selene.yml', '.git' })
+      or vim.fn.stdpath('config'))
+  end,
+  single_file_support = true,
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      diagnostics = { globals = { 'vim' } },
+      workspace = {
+        checkThirdParty = false,
+        library = { vim.env.VIMRUNTIME },
+      },
+      telemetry = { enable = false },
+    },
+  },
+})
+vim.lsp.enable('lua_ls')
