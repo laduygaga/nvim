@@ -166,8 +166,38 @@ require("lazy").setup({
     cmd = { "Git", "G", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse", "GRemove", "GRename", "Glgrep", "Gedit" },
   },
   {
-    "airblade/vim-gitgutter",
+    "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("gitsigns").setup({
+        signs = {
+          add = { text = "│" },
+          change = { text = "│" },
+          delete = { text = "_" },
+          topdelete = { text = "‾" },
+          changedelete = { text = "~" },
+        },
+        current_line_blame = false,
+        on_attach = function(bufnr)
+          local gs = require("gitsigns")
+          local function map(m, l, r, d)
+            vim.keymap.set(m, l, r, { buffer = bufnr, desc = d })
+          end
+          map("n", "]c", function()
+            if vim.wo.diff then vim.cmd("normal! ]c") else gs.nav_hunk("next") end
+          end, "Next hunk")
+          map("n", "[c", function()
+            if vim.wo.diff then vim.cmd("normal! [c") else gs.nav_hunk("prev") end
+          end, "Prev hunk")
+          map("n", "<leader>hs", gs.stage_hunk, "Stage hunk")
+          map("n", "<leader>hr", gs.reset_hunk, "Reset hunk")
+          map("v", "<leader>hs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, "Stage hunk")
+          map("v", "<leader>hr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, "Reset hunk")
+          map("n", "<leader>hp", gs.preview_hunk, "Preview hunk")
+          map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, "Blame line")
+        end,
+      })
+    end,
   },
   {
     "rhysd/git-messenger.vim",
