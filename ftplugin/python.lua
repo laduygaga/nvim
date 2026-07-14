@@ -23,5 +23,25 @@ vim.keymap.set('n', '<leader>df', function() require('dap-python').test_method()
 vim.keymap.set('n', '<leader>do', function() require('dap-python').test_class() end, { buffer = true, silent = true })
 
 -- LSP configuration for Python
-vim.lsp.config('pyright', { on_attach = _G.on_attach })
+vim.lsp.config('pyright', {
+  cmd = { 'pyright-langserver', '--stdio' },
+  filetypes = { 'python' },
+  root_dir = function(bufnr, on_dir)
+    on_dir(vim.fs.root(vim.api.nvim_buf_get_name(bufnr), {
+      'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt',
+      'Pipfile', 'pyrightconfig.json', '.git',
+    }))
+  end,
+  single_file_support = true,
+  on_attach = _G.on_attach,
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = 'openFilesOnly',
+      },
+    },
+  },
+})
 vim.lsp.enable('pyright')
