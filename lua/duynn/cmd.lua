@@ -19,9 +19,6 @@ vim.cmd[[highlight FloatermBorder guibg=orange guifg=cyan]]
 vim.cmd[[let g:floaterm_width=0.9]]
 vim.cmd[[let g:floaterm_height=0.8]]
 
--- Ag
-vim.cmd[[let g:ag_working_path_mode="r"]]
-
 -- fix paste mode
 vim.cmd[[let &t_SI .= "\<Esc>[?2004h"]]
 vim.cmd[[let &t_EI .= "\<Esc>[?2004l"]]

@@ -14,8 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- Core
-  { "nvim-lua/plenary.nvim", lazy = true },
-  { "nvim-lua/popup.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
   {
@@ -167,7 +165,6 @@ require("lazy").setup({
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "Git", "G", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse", "GRemove", "GRename", "Glgrep", "Gedit" },
   },
-  { "tpope/vim-rhubarb", lazy = true },
   {
     "airblade/vim-gitgutter",
     event = { "BufReadPost", "BufNewFile" },
@@ -177,7 +174,6 @@ require("lazy").setup({
     cmd = "GitMessenger",
     keys = { { "<leader>gm", "<cmd>GitMessenger<cr>", desc = "Git messenger" } },
   },
-  { "will133/vim-dirdiff", cmd = "DirDiff" },
 
   -- DAP (Debug Adapter Protocol)
   {
@@ -216,8 +212,22 @@ require("lazy").setup({
 
   -- Copilot
   {
-    "github/copilot.vim",
+    "zbirenbaum/copilot.lua",
     event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        panel = { enabled = true, auto_refresh = false },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          keymap = {
+            accept = "<C-f>",
+            next = "<C-j>",
+            prev = "<C-k>",
+          },
+        },
+      })
+    end,
   },
 
   -- UI & Navigation
@@ -270,7 +280,6 @@ require("lazy").setup({
 
   -- Languages
   { "TovarishFin/vim-solidity", ft = "solidity" },
-  { "ggreer/the_silver_searcher", lazy = true },
   { "pamacs/vim-srt-sync", ft = "srt" },
 
   -- Competitive Programming
@@ -283,7 +292,6 @@ require("lazy").setup({
     lazy = false,
     priority = 1000,
   },
-  { "folke/lsp-colors.nvim", lazy = true },
   {
     "laduygaga/csvview.nvim",
     branch = "fix/multi-line-sticky-header",

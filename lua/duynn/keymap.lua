@@ -74,8 +74,8 @@ vnoremap("_", ":Underline<CR>")
 vnoremap("=", ":DoubleUnderline<CR>")
 
 
-nnoremap("<leader>g", "<cmd>Ag <C-r>=expand('<cword>')<CR><CR>", { silent = true })
-nnoremap("<leader>s", "<cmd>AgFromSearch<CR>", { silent = true })
+nnoremap("<leader>g", "<cmd>lua require('fzf-lua').grep({ query = vim.fn.expand('<cword>') })<CR>", { silent = true })
+nnoremap("<leader>s", "<cmd>lua require('fzf-lua').grep({ query = vim.fn.getreg('/') })<CR>", { silent = true })
 nnoremap("<leader>e", "<cmd>CsvViewToggle<CR>", { silent = true })
 nnoremap("<leader>m", "<cmd>lua ToggleMouse()<CR>", { silent = true })
 nnoremap("<leader>w", "<cmd>lua ToggleWrap()<CR>", { silent = true })
@@ -102,8 +102,8 @@ nnoremap("[b", "<cmd> lua require('goto-breakpoints').prev()<CR>", {silent=true}
 
 nnoremap("<leader><leader>td", "<cmd>FzfLua diagnostics_document<CR>", { silent = true })
 
--- copilot chat
-nnoremap("<C-k>", "<cmd>CopilotChatToggle<CR>", { silent = true })
+-- copilot panel (copilot.lua)
+nnoremap("<C-k>", "<cmd>lua require('copilot.panel').toggle()<CR>", { silent = true })
 
 -- fold
 nnoremap("<leader>z", "za", { silent = true })
