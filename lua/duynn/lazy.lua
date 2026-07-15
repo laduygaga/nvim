@@ -280,11 +280,23 @@ require("lazy").setup({
 
   -- Terminal
   {
-    "voldikss/vim-floaterm",
-    cmd = { "FloatermNew", "FloatermToggle" },
+    "akinsho/toggleterm.nvim",
+    version = "2.*",
+    cmd = { "ToggleTerm" },
     keys = {
-      -- { "<leader>t", "<cmd>FloatermToggle<cr>", desc = "Toggle terminal" },
+      { "<C-j>", "<cmd>ToggleTerm<CR>", desc = "Toggle terminal", mode = { "n", "i", "t" } },
+      { "<leader>T", "<cmd>ToggleTerm direction=tab<CR>", desc = "Terminal in new tab" },
     },
+    config = function()
+      require("toggleterm").setup({
+        size = 20,
+        direction = "float",
+        shading_factor = -10,
+        start_in_insert = true,
+        persist_size = true,
+        float_opts = { border = "rounded" },
+      })
+    end,
   },
 
   -- Editing

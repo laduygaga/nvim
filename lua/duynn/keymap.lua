@@ -85,8 +85,6 @@ nnoremap("<leader>v", "<cmd>MarkdownPreviewToggle<CR>", { silent = true })
 nnoremap("<F2>", "<cmd>lua ToggleExpandtab()<CR>", { silent = true })
 nnoremap("<F4>", "<cmd>lua ToggleColorscheme()<CR>", { silent = true })
 
-nnoremap("<C-j>", "<cmd>FloatermToggle<CR>", { silent = true })
-tnoremap("<C-j>", "<C-\\><C-n>:FloatermToggle<CR>", { silent = true })
 tnoremap("<C-]>", "<C-\\><C-n>", { silent = true })
 
 -- source graph

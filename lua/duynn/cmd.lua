@@ -14,11 +14,6 @@ vim.cmd[[hi MatchParen ctermfg=Black ctermbg=LightCyan]]
 vim.cmd[[hi CursorLineNr term=none cterm=none ctermfg=202]]
 vim.cmd[[hi Search term=none cterm=none ctermfg=Black ctermbg=LightCyan]]
 
--- floaterm
-vim.cmd[[highlight FloatermBorder guibg=orange guifg=cyan]]
-vim.cmd[[let g:floaterm_width=0.9]]
-vim.cmd[[let g:floaterm_height=0.8]]
-
 -- fix paste mode
 vim.cmd[[let &t_SI .= "\<Esc>[?2004h"]]
 vim.cmd[[let &t_EI .= "\<Esc>[?2004l"]]

@@ -62,12 +62,6 @@ api.nvim_create_autocmd("BufReadPre", {
 	end,
 })
 
--- Floaterm resize handling
-api.nvim_create_autocmd("VimResized", {
-	pattern = "*",
-	command = "FloatermUpdate",
-})
-
 -- Misc file types
 api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	pattern = "*.conf",
