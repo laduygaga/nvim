@@ -29,19 +29,8 @@ vim.cmd[[let &t_SI.="\e[5 q"]]  -- SI = INSERT mode
 vim.cmd[[let &t_SR.="\e[1 q"]]  -- SR = REPLACE mode
 vim.cmd[[let &t_EI.="\e[1 q"]]  -- EI = EXIT INSERT mode
 
-
-
--- FZF use fd (use for fzf.vim), move to fzf-lua, no need now
--- vim.cmd[[let $FZF_DEFAULT_COMMAND = "fd --no-ignore-vcs"]]
-
 -- netrw
 vim.cmd[[let g:netrw_banner=0]]
 vim.cmd[[let g:netrw_liststyle=1]]
 vim.cmd[[let g:netrw_list_hide = '^\..*']]
 vim.cmd[[let g:netrw_hide = 1]]
-
--- coq
--- vim.cmd[[let g:coq_settings = { 'auto_start': 'shut-up' }]]
-
--- make tagbar in the left
-vim.cmd('let g:tagbar_left = 1')

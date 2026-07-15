@@ -21,9 +21,7 @@ M.tnoremap = bind("t")
 local nnoremap = M.nnoremap
 local vnoremap = M.vnoremap
 local inoremap = M.inoremap
--- local xnoremap = M.xnoremap
 local tnoremap = M.tnoremap
--- local nmap = M.nmap
 
 inoremap("jk", "<ESC>")
 -- this make i can use `p` to paste from system clipboard, but issue is 
@@ -35,18 +33,6 @@ nnoremap("<CR>", "<cmd>GitMessenger<CR>")
 vnoremap("Y", "\"+y")
 vnoremap("*", "y<ESC>/<C-r>\"<CR>")
 nnoremap("<leader>t", "<cmd>tabnew<CR>", { silent = true })
-nnoremap("<leader><leader>d", "<cmd>tabclose<CR>", { silent = true })
-nnoremap("<leader><leader>D", "<cmd>qa!<CR>", { silent = true })
--- nnoremap("<leader><leader>g", "<cmd>GFiles<CR>", { silent = true }) -- use fzf-lua git_files
--- nnoremap("<leader><leader>f", "<cmd>Files<CR>", { silent = true })  -- use fzf-lua files
-nnoremap("<leader><leader>h", "<cmd>Telescope help_tags<CR>", { silent = true })
--- nnoremap("<leader>r", "<cmd>GRg<CR>", { silent = true })
--- Search Project Root
--- local builtin = require('telescope.builtin')
--- vim.keymap.set('n', '<leader>r', function()
---   builtin.live_grep({ cwd = vim.fs.root(0, ".git") })
--- end)
--- nnoremap("<leader><leader>s", "<cmd>FRg<CR>", { silent = true })
 nnoremap("<C-Tab>", "gt", { silent = true })
 nnoremap("<S-Tab>", "gT", { silent = true })
 nnoremap("gr", ":%s///g<left><left>", { silent = true })
@@ -55,7 +41,6 @@ nnoremap("g-", ":exe \"resize \" . (winheight(0) * 2/3)<CR>")
 nnoremap("gl", ":exe \"vertical resize \" . (winwidth(0) * 3/2)<CR>")
 nnoremap("gL", ":exe \"vertical resize \" . (winwidth(0) * 2/3)<CR>")
 
-vnoremap("<leader>,,", "<cmd>Trans :vi -b<CR>", { silent = true })
 vnoremap("gd", "<cmd>\'<,\'>g/^$/d<CR>", { silent = true })
 vnoremap("gD", "<cmd>g/^$/d<CR>", { silent = true })
 
@@ -79,7 +64,6 @@ nnoremap("<leader>s", "<cmd>lua require('fzf-lua').grep({ query = vim.fn.getreg(
 nnoremap("<leader>e", "<cmd>CsvViewToggle<CR>", { silent = true })
 nnoremap("<leader>m", "<cmd>lua ToggleMouse()<CR>", { silent = true })
 nnoremap("<leader>w", "<cmd>lua ToggleWrap()<CR>", { silent = true })
--- nnoremap("<C-e>", "<cmd>TagbarToggle<CR>", { silent = true })
 nnoremap("<C-e>", "<cmd>AerialToggle!<CR>", { silent = true })
 nnoremap("<leader>v", "<cmd>MarkdownPreviewToggle<CR>", { silent = true })
 nnoremap("<F2>", "<cmd>lua ToggleExpandtab()<CR>", { silent = true })
