@@ -10,6 +10,7 @@ vim.lsp.config('bashls', {
     on_dir(vim.fs.root(fname, { '.git' }) or (fname ~= '' and vim.fs.dirname(fname)) or vim.fn.getcwd())
   end,
   single_file_support = true,
+  capabilities = _G.get_lsp_capabilities(),
   settings = {
     bashIde = {
       globPattern = '*@(.sh|.inc|.bash|.command)',

@@ -2,12 +2,6 @@
 vim.keymap.set('n', '<leader>2', ':w<CR>:!clear<CR>:!cargo run<CR>', { buffer = true, silent = true })
 
 -- LSP configuration for Rust
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local ok, blink = pcall(require, 'blink.cmp')
-if ok then
-  capabilities = blink.get_lsp_capabilities(capabilities)
-end
-
 vim.lsp.config('rust_analyzer', {
     cmd = { 'rust-analyzer' },
     filetypes = { 'rust' },
@@ -34,8 +28,7 @@ vim.lsp.config('rust_analyzer', {
       )
     end,
     single_file_support = true,
-    on_attach = _G.on_attach,
-    capabilities = capabilities,
+    capabilities = _G.get_lsp_capabilities(),
     before_init = function(init_params, config)
       if config.settings and config.settings['rust-analyzer'] then
         init_params.initializationOptions = config.settings['rust-analyzer']

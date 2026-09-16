@@ -20,7 +20,6 @@ local function debug_file()
   osv_chan = vim.fn.jobstart({vim.v.progpath, '-u', 'NONE', '--headless', '--embed'}, { rpc = true })
   
   -- 3. Run blocking debugger in headless instance
-  -- This will wait for our local DAP client to attach before executing the luafile
   vim.fn.rpcnotify(osv_chan, 'nvim_exec_lua', [[
     local rtp, pp, file = ...
     vim.o.runtimepath = rtp
@@ -57,7 +56,6 @@ vim.keymap.set('n', '<F9>', function() require('dap').step_into() end, { buffer 
 vim.keymap.set('n', '<F10>', function() require('dap').step_out() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>du', function() require("dapui").toggle() end, { buffer = true, silent = true })
 
--- Visual mode eval - use old vnoremap style for proper behavior
 vim.cmd([[vnoremap <buffer> <silent> <CR> :lua require("dapui").eval()<CR>]])
 
 vim.lsp.config('lua_ls', {
@@ -69,6 +67,7 @@ vim.lsp.config('lua_ls', {
       or vim.fn.stdpath('config'))
   end,
   single_file_support = true,
+  capabilities = _G.get_lsp_capabilities(),
   settings = {
     Lua = {
       runtime = { version = 'LuaJIT' },

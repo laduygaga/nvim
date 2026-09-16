@@ -1,12 +1,6 @@
 -- C executor mappings
 vim.keymap.set('n', '<leader>2', ':w<CR>:!clear;gcc -o %:r %:p<CR>:!./%:r<CR>', { buffer = true })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local ok, blink = pcall(require, 'blink.cmp')
-if ok then
-  capabilities = blink.get_lsp_capabilities(capabilities)
-end
-
 vim.lsp.config('clangd', {
   cmd = { 'clangd' },
   filetypes = { 'c', 'c.doxygen', 'cpp', 'cpp.doxygen', 'objc', 'objcpp', 'cuda' },
@@ -17,6 +11,6 @@ vim.lsp.config('clangd', {
       or vim.fn.getcwd())
   end,
   single_file_support = true,
-  capabilities = capabilities,
+  capabilities = _G.get_lsp_capabilities(),
 })
 vim.lsp.enable('clangd')

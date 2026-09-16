@@ -10,10 +10,8 @@ vim.keymap.set('v', 'g/', ':norm 0xxx<esc>', { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>b', function() require('dap').toggle_breakpoint() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>B', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint Condition: ')) end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>dl', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, { buffer = true, silent = true })
--- Visual mode eval - use old vnoremap style for proper behavior
 vim.cmd([[vnoremap <buffer> <silent> <CR> :lua require("dapui").eval()<CR>]])
 vim.keymap.set('n', '<leader>dc', function() require('dap').continue() end, { buffer = true, silent = true })
--- vim.keymap.set('n', '<leader>ds', function() require('dap').close() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>ds', function() require('dap').terminate() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<F8>', function() require('dap').step_over() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<F9>', function() require('dap').step_into() end, { buffer = true, silent = true })
@@ -29,25 +27,24 @@ vim.lsp.config('gopls', {
     on_dir(vim.fs.root(vim.api.nvim_buf_get_name(bufnr), { 'go.work', 'go.mod', '.git' }))
   end,
   single_file_support = true,
-  on_attach = _G.on_attach,
+  capabilities = _G.get_lsp_capabilities(),
   flags = { debounce_text_changes = 200 },
   settings = {
     gopls = {
       analyses = {
-        staticcheck = false, -- Optimization
-        unusedparams = false, -- costly per keystroke on large codebases
+        staticcheck = false,
+        unusedparams = false,
         nilness = false,
         shadow = false,
         unusedwrite = false,
         unreachable = false,
       },
-      staticcheck = false, -- Optimization
+      staticcheck = false,
       directoryFilters = {
         '-**/vendor',
         '-**/testdata',
         '-**/node_modules',
       },
-      -- set false only if you open a subdir of a big module (reduces workspace scope)
       expandWorkspaceToModule = false,
     },
   },

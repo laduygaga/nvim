@@ -10,7 +10,6 @@ vim.keymap.set('v', 'g/', ':norm 0xx<esc>', { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>b', function() require('dap').toggle_breakpoint() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>B', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint Condition: ')) end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>dl', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, { buffer = true, silent = true })
--- Visual mode eval - use old vnoremap style for proper behavior
 vim.cmd([[vnoremap <buffer> <silent> <CR> :lua require("dapui").eval()<CR>]])
 vim.keymap.set('n', '<leader>dc', function() require('dap').continue() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>ds', function() require('dap').terminate() end, { buffer = true, silent = true })
@@ -33,7 +32,7 @@ vim.lsp.config('pyright', {
     }))
   end,
   single_file_support = true,
-  on_attach = _G.on_attach,
+  capabilities = _G.get_lsp_capabilities(),
   settings = {
     python = {
       analysis = {

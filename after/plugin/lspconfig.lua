@@ -1,52 +1,71 @@
--- vim.lsp.set_log_level("debug")
-
--- Use an on_attach function to only map the following keys 
--- after the language server attaches to the current buffer
-_G.on_attach = function(_, bufnr)
-  local opts = { noremap=true, silent=true, buffer = bufnr }
-
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-  -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-  vim.keymap.set('n', 'gd', '<cmd>FzfLua lsp_definitions<CR>', { desc = 'LSP Definition' })
-  vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
-  vim.keymap.set('n', 'gi', '<cmd>FzfLua lsp_implementations<CR>', { desc = 'LSP Implementation' })
-  vim.keymap.set('n', '<leader><leader>ca', vim.lsp.buf.code_action, opts)
-  vim.keymap.set('n', '<leader><leader>td', '<cmd>FzfLua diagnostics_document<CR>', opts)
-  -- lsp rename
-  vim.keymap.set('n', '<leader><leader>r', vim.lsp.buf.rename, opts)
-  -- lsp finder
-  vim.keymap.set('n', 'gh', '<cmd>FzfLua lsp_references<CR>', opts)
-  vim.keymap.set('n', ']e', function() vim.diagnostic.jump({ count = 1 }) end, opts)
-  vim.keymap.set('n', '[e', function() vim.diagnostic.jump({ count = -1 }) end, opts)
+-- Global LSP Capabilities helper (integrates blink.cmp)
+function _G.get_lsp_capabilities(override)
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local ok, blink = pcall(require, "blink.cmp")
+  if ok then
+    capabilities = blink.get_lsp_capabilities(capabilities)
+  end
+  if override then
+    capabilities = vim.tbl_deep_extend("force", capabilities, override)
+  end
+  return capabilities
 end
 
-vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1e1e2e' })
-vim.api.nvim_set_hl(0, 'FloatBorder', { fg = '#c678dd', bg = '#1e1e2e' })
-vim.o.winborder = 'rounded' -- or 'single', 'double', 'solid', 'none'
+-- LSP Keymaps via LspAttach autocmd (applies to ALL language servers automatically)
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+  callback = function(ev)
+    local opts = { noremap = true, silent = true, buffer = ev.buf }
 
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", { buffer = ev.buf, desc = "LSP Definition" })
+    vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, opts)
+    vim.keymap.set("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", { buffer = ev.buf, desc = "LSP Implementation" })
+    vim.keymap.set("n", "<leader><leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader><leader>td", "<cmd>FzfLua diagnostics_document<CR>", opts)
+    vim.keymap.set("n", "<leader><leader>r", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "gh", "<cmd>FzfLua lsp_references<CR>", opts)
+    vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = 1 }) end, opts)
+    vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = -1 }) end, opts)
+  end,
+})
+
+-- Auto-reload buffers when edited externally (e.g. by OpenCode, git, formatting scripts)
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  group = vim.api.nvim_create_augroup("AutoChecktime", { clear = true }),
+  pattern = "*",
+  callback = function()
+    if vim.fn.getcmdwintype() == "" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
+-- UI Highlights
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e1e2e" })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#c678dd", bg = "#1e1e2e" })
+vim.o.winborder = "rounded"
+
+-- Diagnostic Configuration
 vim.diagnostic.config({
-  -- General diagnostic options
-  virtual_text = true,     -- Disable virtual text (optional)
-  signs = true,             -- Enable signs for diagnostics
-  underline = true,         -- Underline diagnostic lines
-  update_in_insert = false, -- Disable updates in insert mode
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
 
-  -- Float-specific settings
   float = {
-    border = "rounded", -- Can be "single", "double", "rounded", "solid", "shadow"
-    source = "always",  -- Always show diagnostic source in float
-	max_width = 80,     -- Maximum width of a diagnostic float
-    header = "",        -- Header for diagnostic float (optional)
-    prefix = "",        -- Prefix for each diagnostic message
+    border = "rounded",
+    source = "always",
+    max_width = 80,
+    header = "",
+    prefix = "",
     format = function(diagnostic)
       return string.format("%s (%s)", diagnostic.message, diagnostic.source)
     end,
   },
-  -- open a float on jump (replaces the deprecated goto_next/goto_prev float option)
   jump = {
     on_jump = function(_, bufnr)
-      vim.diagnostic.open_float({ bufnr = bufnr, scope = 'cursor', focus = false })
+      vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
     end,
   },
 })
