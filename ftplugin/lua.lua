@@ -67,7 +67,7 @@ vim.lsp.config('lua_ls', {
       or vim.fn.stdpath('config'))
   end,
   single_file_support = true,
-  capabilities = _G.get_lsp_capabilities(),
+  capabilities = require("duynn.lsp").get_capabilities(),
   settings = {
     Lua = {
       runtime = { version = 'LuaJIT' },

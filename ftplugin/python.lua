@@ -32,7 +32,7 @@ vim.lsp.config('pyright', {
     }))
   end,
   single_file_support = true,
-  capabilities = _G.get_lsp_capabilities(),
+  capabilities = require("duynn.lsp").get_capabilities(),
   settings = {
     python = {
       analysis = {

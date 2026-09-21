@@ -28,7 +28,7 @@ vim.lsp.config('rust_analyzer', {
       )
     end,
     single_file_support = true,
-    capabilities = _G.get_lsp_capabilities(),
+    capabilities = require("duynn.lsp").get_capabilities(),
     before_init = function(init_params, config)
       if config.settings and config.settings['rust-analyzer'] then
         init_params.initializationOptions = config.settings['rust-analyzer']

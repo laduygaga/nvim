@@ -27,7 +27,7 @@ vim.lsp.config('gopls', {
     on_dir(vim.fs.root(vim.api.nvim_buf_get_name(bufnr), { 'go.work', 'go.mod', '.git' }))
   end,
   single_file_support = true,
-  capabilities = _G.get_lsp_capabilities(),
+  capabilities = require("duynn.lsp").get_capabilities(),
   flags = { debounce_text_changes = 200 },
   settings = {
     gopls = {

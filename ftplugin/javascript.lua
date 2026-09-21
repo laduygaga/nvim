@@ -20,12 +20,6 @@ vim.keymap.set('n', '<F10>', function() require('dap').step_out() end, { buffer 
 vim.keymap.set('n', '<leader>dr', function() require('dap').repl.toggle() end, { buffer = true, silent = true })
 vim.keymap.set('n', '<leader>du', function() require("dapui").toggle() end, { buffer = true, silent = true })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local ok, blink = pcall(require, 'blink.cmp')
-if ok then
-  capabilities = blink.get_lsp_capabilities(capabilities)
-end
-
 vim.lsp.config('ts_ls', {
   cmd = { 'typescript-language-server', '--stdio' },
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
@@ -35,6 +29,6 @@ vim.lsp.config('ts_ls', {
   end,
   single_file_support = true,
   init_options = { hostInfo = 'neovim' },
-  capabilities = capabilities,
+  capabilities = require("duynn.lsp").get_capabilities(),
 })
 vim.lsp.enable('ts_ls')

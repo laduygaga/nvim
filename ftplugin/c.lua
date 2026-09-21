@@ -11,6 +11,6 @@ vim.lsp.config('clangd', {
       or vim.fn.getcwd())
   end,
   single_file_support = true,
-  capabilities = _G.get_lsp_capabilities(),
+  capabilities = require("duynn.lsp").get_capabilities(),
 })
 vim.lsp.enable('clangd')

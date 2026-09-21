@@ -25,6 +25,6 @@ vim.lsp.config('ts_ls', {
   end,
   single_file_support = true,
   init_options = { hostInfo = 'neovim' },
-  capabilities = _G.get_lsp_capabilities(),
+  capabilities = require("duynn.lsp").get_capabilities(),
 })
 vim.lsp.enable('ts_ls')
