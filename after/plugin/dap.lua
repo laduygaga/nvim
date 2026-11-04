@@ -103,7 +103,14 @@ dap.configurations.python = {
 
         program = "${file}";  -- This configuration will launch the current file if used.
         pythonPath = function()
-            return "/home/duy/python/src/debugpy/bin/python"  -- Update with your Python path
+            local cwd = vim.fn.getcwd()
+            if vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+                return cwd .. '/.venv/bin/python'
+            elseif vim.fn.executable(cwd .. '/env/bin/python') == 1 then
+                return cwd .. '/env/bin/python'
+            else
+                return "/home/duy/python/src/debugpy/bin/python"
+            end
         end;
         justMyCode = false;  -- Set this to false to include library and framework code
     },
