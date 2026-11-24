@@ -61,11 +61,11 @@ vim.cmd([[vnoremap <buffer> <silent> <CR> :lua require("dapui").eval()<CR>]])
 vim.lsp.config('lua_ls', {
   cmd = { 'lua-language-server' },
   filetypes = { 'lua' },
-  root_dir = function(bufnr)
+  root_dir = function(bufnr, on_dir)
     local fname = vim.api.nvim_buf_get_name(bufnr)
-    return vim.fs.root(fname,
+    on_dir(vim.fs.root(fname,
       { '.luarc.json', '.luarc.jsonc', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', 'selene.yml', '.git' })
-      or vim.fn.stdpath('config')
+      or vim.fn.stdpath('config'))
   end,
   single_file_support = true,
   capabilities = require("duynn.lsp").get_capabilities(),

@@ -5,9 +5,9 @@ vim.keymap.set('n', '<leader>2', ':w<CR>:!clear<CR>:!cargo run<CR>', { buffer = 
 vim.lsp.config('rust_analyzer', {
     cmd = { 'rust-analyzer' },
     filetypes = { 'rust' },
-    root_dir = function(bufnr)
+    root_dir = function(bufnr, on_dir)
       local fname = vim.api.nvim_buf_get_name(bufnr)
-      return vim.fs.root(fname, { 'Cargo.toml', 'rust-project.json', '.git' })
+      on_dir(vim.fs.root(fname, { 'Cargo.toml', 'rust-project.json', '.git' }))
     end,
     single_file_support = true,
     capabilities = require("duynn.lsp").get_capabilities(),

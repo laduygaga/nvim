@@ -23,9 +23,9 @@ vim.keymap.set('n', '<leader>du', function() require("dapui").toggle() end, { bu
 vim.lsp.config('gopls', {
   cmd = { 'gopls' },
   filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
-  root_dir = function(bufnr)
+  root_dir = function(bufnr, on_dir)
     local fname = vim.api.nvim_buf_get_name(bufnr)
-    return vim.fs.root(fname, { 'go.work', 'go.mod', '.git' })
+    on_dir(vim.fs.root(fname, { 'go.work', 'go.mod', '.git' }))
   end,
   single_file_support = true,
   capabilities = require("duynn.lsp").get_capabilities(),

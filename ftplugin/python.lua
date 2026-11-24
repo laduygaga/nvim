@@ -25,12 +25,12 @@ vim.keymap.set('n', '<leader>do', function() require('dap-python').test_class() 
 vim.lsp.config('pyright', {
   cmd = { 'pyright-langserver', '--stdio' },
   filetypes = { 'python' },
-  root_dir = function(bufnr)
+  root_dir = function(bufnr, on_dir)
     local fname = vim.api.nvim_buf_get_name(bufnr)
-    return vim.fs.root(fname, {
+    on_dir(vim.fs.root(fname, {
       'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt',
       'Pipfile', 'pyrightconfig.json', '.git',
-    })
+    }))
   end,
   single_file_support = true,
   capabilities = require("duynn.lsp").get_capabilities(),
