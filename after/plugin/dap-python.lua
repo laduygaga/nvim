@@ -1,6 +1,11 @@
 local dap_python = require('dap-python')
 
-dap_python.setup('/usr/bin/python3', {
+local debugpy_python = vim.fn.expand('~/.virtualenvs/debugpy/bin/python')
+if vim.fn.executable(debugpy_python) == 0 then
+  debugpy_python = '/usr/bin/python3'
+end
+
+dap_python.setup(debugpy_python, {
   include_configs = true,
 })
 
