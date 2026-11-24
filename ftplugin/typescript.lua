@@ -19,9 +19,10 @@ vim.keymap.set('n', '<leader>du', function() require("dapui").toggle() end, { bu
 vim.lsp.config('ts_ls', {
   cmd = { 'typescript-language-server', '--stdio' },
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-  root_dir = function(bufnr, on_dir)
-    on_dir(vim.fs.root(vim.api.nvim_buf_get_name(bufnr), { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' })
-      or vim.fn.getcwd())
+  root_dir = function(bufnr)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    return vim.fs.root(fname, { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' })
+      or vim.fn.getcwd()
   end,
   single_file_support = true,
   init_options = { hostInfo = 'neovim' },

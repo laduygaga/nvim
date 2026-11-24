@@ -5,9 +5,9 @@ vim.keymap.set('v', '<leader>2', '!bash<CR>', { buffer = true })
 vim.lsp.config('bashls', {
   cmd = { 'bash-language-server', 'start' },
   filetypes = { 'bash', 'sh' },
-  root_dir = function(bufnr, on_dir)
+  root_dir = function(bufnr)
     local fname = vim.api.nvim_buf_get_name(bufnr)
-    on_dir(vim.fs.root(fname, { '.git' }) or (fname ~= '' and vim.fs.dirname(fname)) or vim.fn.getcwd())
+    return vim.fs.root(fname, { '.git' }) or (fname ~= '' and vim.fs.dirname(fname)) or vim.fn.getcwd()
   end,
   single_file_support = true,
   capabilities = require("duynn.lsp").get_capabilities(),
